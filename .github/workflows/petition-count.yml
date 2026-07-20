@@ -1,0 +1,41 @@
+name: Update petition count
+
+on:
+  schedule:
+    - cron: "23 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch signature count from change.org
+        run: |
+          html=$(curl -s -m 60 -L \
+            -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36" \
+            "https://www.change.org/p/ban-flock-ai-surveillance-cameras-in-north-carolina" || true)
+          count=$(printf '%s' "$html" | grep -oE '"signatureCount":\{"displayed":[0-9]+' | head -1 | grep -oE '[0-9]+$' || true)
+          if [ -n "$count" ] && [ "$count" -gt 0 ]; then
+            printf '{"count":%s,"updated":"%s"}\n' "$count" "$(date -u +%FT%TZ)" > signatures.json
+            echo "Fetched count: $count"
+          else
+            echo "Could not parse a count; leaving signatures.json unchanged."
+          fi
+
+      - name: Commit if changed
+        run: |
+          if ! git diff --quiet signatures.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add signatures.json
+            git commit -m "Update petition signature count"
+            for i in 1 2 3; do
+              if git push; then break; fi
+              git pull --rebase origin main
+            done
+          fi

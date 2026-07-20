@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Near You — Flock Camera Status & Meetings in Your NC County | DeFlock NC</title>
+<meta name="description" content="Enter your ZIP, address or town — or share your location — to see whether Flock cameras are active, being decided, or dropped where you live, and find your next local government meeting.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DeFlock NC">
+<meta property="og:title" content="Near You — Flock Camera Status &amp; Meetings in Your NC County">
+<meta property="og:description" content="See whether Flock cameras are active, being decided, or dropped where you live — and find your next local meeting.">
+<meta property="og:image" content="https://thesmartzebra.github.io/DeFlockNC/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0f1114">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png">
+<link rel="apple-touch-icon" href="assets/favicon-64.png">
+<link rel="stylesheet" href="styles.css?v=6">
+<style>
+  .loc-box{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 10px;}
+  .loc-box input{flex:1;min-width:220px;background:var(--panel);border:1.5px solid var(--border2);border-radius:8px;
+    color:var(--ink);font-size:17px;padding:14px 18px;outline:none;font-family:inherit;}
+  .loc-box input:focus{border-color:var(--orange);}
+  .loc-box input::placeholder{color:var(--dim);}
+  .loc-box button{cursor:pointer;font-family:inherit;border:none;}
+  #nearyou-status{min-height:22px;}
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<header class="nav">
+  <a class="brand" href="index.html" style="color:var(--ink)">
+    <span class="mark" style="position:relative;display:inline-block;border-radius:50%;overflow:hidden;flex-shrink:0;" aria-label="Flock ALPR camera">
+      <img src="assets/flock-camera.png" alt="Flock ALPR camera" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
+      <svg viewBox="0 0 100 100" style="position:absolute;inset:0;width:100%;height:100%;"><circle cx="50" cy="50" r="45" fill="none" stroke="#FF5A1F" stroke-width="9"/><line x1="17" y1="83" x2="83" y2="17" stroke="#FF5A1F" stroke-width="9" stroke-linecap="round"/></svg>
+    </span>
+    <span class="name">DEFLOCK <span>NC</span></span>
+  </a>
+  <nav class="navlinks">
+    <a href="index.html">Home</a>
+    <a href="cameras.html">The Cameras</a>
+    <a href="who-runs-nc.html">Who Runs NC</a>
+    <a href="news.html">News</a>
+    <a href="faq.html">FAQ</a>
+    <a href="take-action.html">Take Action</a>
+    <a href="materials.html">Materials</a>
+    <a href="near-you.html" class="active">Near You</a>
+  </nav>
+  <button class="menu-btn" aria-label="Toggle menu" aria-expanded="false" onclick="var n=this.closest('.nav');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'))">
+    <svg class="icon-burger" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 5l14 14M19 5L5 19"/></svg>
+  </button>
+  <a class="nav-search" href="search.html" aria-label="Search the site"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></a>
+  <a class="btn btn-orange" href="take-action.html">TAKE ACTION</a>
+</header>
+
+<!-- ===== HEADER ===== -->
+<section class="wrap page-head">
+  <div class="eyebrow" style="margin-bottom:20px;">NEAR YOU</div>
+  <h1 style="font-size:46px;font-weight:900;text-transform:uppercase;margin:0 0 18px;line-height:1.05;">What's happening where you live?</h1>
+  <p class="lead">Enter your ZIP code, town, or address — or share your location — and we'll show whether Flock cameras are <strong>active, being decided, or dropped</strong> in your county, plus where to find your next local government meeting.</p>
+</section>
+
+<div class="hairline"></div>
+
+<!-- ===== TOOL ===== -->
+<section class="wrap section-tight" style="max-width:960px;">
+  <form class="loc-box" id="loc-form">
+    <input id="loc" type="text" placeholder="ZIP code, town, or address (e.g. 27510 or &quot;Boone, NC&quot;)" aria-label="Your ZIP code, town, or address" autocomplete="postal-code">
+    <button type="submit" class="btn btn-orange btn-lg">Check my area</button>
+    <button type="button" id="use-location" class="btn btn-ghost btn-lg">📍 Use my location</button>
+  </form>
+  <p id="nearyou-status" class="dim" style="font-size:13px;margin:0 0 24px;"></p>
+  <div id="nearyou-results"></div>
+  <p class="dim" style="font-size:12px;margin-top:30px;">Privacy note: your location or address is sent only to <a href="https://nominatim.openstreetmap.org/" target="_blank" rel="noopener">OpenStreetMap's Nominatim</a> geocoder to find your county — never to us. We keep no logs. Status data comes from our <a href="cameras.html#deployments">NC deployment tracker</a>; geocoding © OpenStreetMap contributors.</p>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer wrap">
+  <div class="dim">© 2026 DeFlock NC · Contact <a href="mailto:info@deflocknc.org">info@deflocknc.org</a> · Independent &amp; volunteer-run. Not affiliated with Flock Safety, Inc., or DeFlock.org.</div>
+  <div class="soc">
+    <a href="contact.html">Contact</a>
+    <a href="https://x.com/DeFlockNC" target="_blank" rel="noopener">X @DeFlockNC</a>
+    <a href="https://maps.deflock.org/" target="_blank" rel="noopener">Camera Map</a>
+  </div>
+</footer>
+
+<script src="near-you.js"></script>
+</body>
+</html>
