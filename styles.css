@@ -43,7 +43,7 @@ img{max-width:100%;}
 .navlinks a:hover,.navlinks a.active{color:var(--ink);}
 .navlinks a.active{color:var(--orange);}
 .nav-search{display:flex;align-items:center;justify-content:center;width:38px;height:38px;
-  border:1.5px solid var(--border2);border-radius:6px;color:var(--mut2);flex-shrink:0;}
+  border:1.5px solid var(--border2);border-radius:6px;color:var(--mut2);flex-shrink:0;margin-left:auto;}
 .nav-search:hover{border-color:var(--orange);color:var(--ink);}
 .nav-search svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;}
 .menu-btn{display:none;background:none;border:1.5px solid var(--border2);border-radius:6px;padding:8px 10px;cursor:pointer;color:var(--ink);line-height:0;}
