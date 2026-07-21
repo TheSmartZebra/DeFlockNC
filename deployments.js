@@ -28,7 +28,8 @@
         var s = STATUS[c.status] || STATUS.active;
         var note = esc(c.note);
         if (c.link) {
-          note = note.replace(esc(c.place.split(' ')[0]), '<a href="' + c.link + '" target="_blank" rel="noopener">' + esc(c.place.split(' ')[0]) + '</a>');
+          var lt = esc(c.linkText || c.place.split(' ')[0]);
+          note = note.replace(lt, '<a href="' + c.link + '" target="_blank" rel="noopener">' + lt + '</a>');
         }
         return '<tr><td>' + esc(c.place) + '</td><td>' + esc(c.cameras) +
           '</td><td><span class="tag ' + s.cls + '">' + s.label +

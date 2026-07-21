@@ -31,8 +31,8 @@
     var hl = highlight ? 'border-color:var(--orange);' : '';
     var note = esc(c.note);
     if (c.link) {
-      var first = esc(c.place.split(' ')[0]);
-      note = note.replace(first, '<a href="' + c.link + '" target="_blank" rel="noopener">' + first + '</a>');
+      var lt = esc(c.linkText || c.place.split(' ')[0]);
+      note = note.replace(lt, '<a href="' + c.link + '" target="_blank" rel="noopener">' + lt + '</a>');
     }
     return '<div class="card" style="' + hl + '">' +
       '<div style="display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:8px;flex-wrap:wrap;">' +
