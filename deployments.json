@@ -1,0 +1,28 @@
+{
+  "_comment": "Single source of truth for NC Flock/ALPR deployments. Both the Cameras page table and the Near You tool render from this file. Edit here and both update. status = active | fight (being decided) | dropped. county = NC county name without the word 'County'.",
+  "updated": "2026-07-20",
+  "communities": [
+    { "place": "Raleigh", "county": "Wake", "cameras": "~60 (RPD owns 32)", "status": "active", "note": "Crowdsourced count; balance owned by other agencies." },
+    { "place": "Durham", "county": "Durham", "cameras": "~46", "status": "active", "note": "None owned by Durham PD directly." },
+    { "place": "Charlotte", "county": "Mecklenburg", "cameras": "Citywide network", "status": "active", "note": "Legal claims tied to wrongful plate-reader stops (Jasmine Horne)." },
+    { "place": "Fayetteville", "county": "Cumberland", "cameras": "Citywide network", "status": "active", "note": "Paid a $60K settlement after a camera-image misread led to a wrongful arrest." },
+    { "place": "Madison County", "county": "Madison", "cameras": "Sheriff contract (Feb 2026)", "status": "fight", "note": "3,302 searches within months of signing; residents blocked from speaking at a June 2026 meeting." },
+    { "place": "New Hanover County (Wilmington)", "county": "New Hanover", "cameras": "~62", "status": "fight", "note": "Sheriff's contract (#25-0364) grew ~5x since a 2021 pilot with no public vote; 2.98M searches logged; residents organizing against renewal." },
+    { "place": "Granville County", "county": "Granville", "cameras": "10 (proposed)", "status": "fight", "note": "Sheriff Robert Fountain flagged concerns; pulled from agenda for community input (July 2026)." },
+    { "place": "Creedmoor", "county": "Granville", "cameras": "Active network", "status": "active", "note": "Shares data with 200+ police departments in and out of state." },
+    { "place": "Apex", "county": "Wake", "cameras": "~10 (expires Jan 2027)", "status": "fight", "note": "DeFlock Apex pushing to block renewal; records show data shared with ~1,000 agencies.", "link": "https://deflockapex.org/" },
+    { "place": "Garner", "county": "Wake", "cameras": "~20 (contract proposed)", "status": "fight", "note": "Proposed multi-year contract (~$449K)." },
+    { "place": "Plymouth", "county": "Washington", "cameras": "28 fixed (+8 proposed)", "status": "active", "note": "Among the densest per-capita; a town of ~3,000; federally funded." },
+    { "place": "Pitt County / Greenville", "county": "Pitt", "cameras": "~28 + 10 city", "status": "active", "note": "Countywide network plus separate city cameras (~$30K/yr)." },
+    { "place": "Boone", "county": "Watauga", "cameras": "~15", "status": "active", "note": "Paused expansion; transparency portal active." },
+    { "place": "UNC-Chapel Hill", "county": "Orange", "cameras": "~23", "status": "active", "note": "Campus contract signed 2026; data-sharing concerns raised." },
+    { "place": "Lenoir County", "county": "Lenoir", "cameras": "~16", "status": "active", "note": "~$48K/yr, funded via federal seizure funds." },
+    { "place": "Greensboro (NC A&T)", "county": "Guilford", "cameras": "16 campus", "status": "active", "note": "Campus cameras searched 1.39M times in 3 months by 3,487 agencies, mostly out of state." },
+    { "place": "Southern Pines", "county": "Moore", "cameras": "8", "status": "fight", "note": "Council called the program \"too intrusive\" (2026)." },
+    { "place": "Asheville", "county": "Buncombe", "cameras": "~11 city (+ private feeds)", "status": "fight", "note": "Advanced amid public comment." },
+    { "place": "Macon County", "county": "Macon", "cameras": "12 -> being removed", "status": "dropped", "note": "Commissioners voted 5-0 to defund (July 2026)." },
+    { "place": "Hillsborough", "county": "Orange", "cameras": "5 of 10 -> removed", "status": "dropped", "note": "Board ended the ~$81.5K contract over \"data privacy concerns\" (Dec 2025)." },
+    { "place": "Pittsboro", "county": "Chatham", "cameras": "Removed", "status": "dropped", "note": "Board voted 4-2 to terminate; equipment removed by July 2026." },
+    { "place": "Chatham County", "county": "Chatham", "cameras": "Removed", "status": "dropped", "note": "County voted to pull its own cameras (2026)." }
+  ]
+}
