@@ -83,15 +83,13 @@
 <!-- ===== LIVE SCAN COUNTER ===== -->
 <section class="wrap section-tight">
   <div class="card" style="text-align:center;border-color:#FF5A1F55;background:linear-gradient(180deg,#15171b,#0f1114);">
-    <div class="kicker" style="color:var(--yellow);margin-bottom:10px;">WHILE YOU'VE BEEN ON THIS PAGE</div>
+    <div class="kicker" style="color:var(--yellow);margin-bottom:10px;">WHILE YOU'VE BEEN ON THIS SITE</div>
     <div id="scan-counter" style="font-size:clamp(38px,8vw,68px);font-weight:900;color:var(--orange);line-height:1;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;">0</div>
-    <div class="muted" style="margin-top:12px;font-size:16px;">license plates have been scanned by Flock cameras across the U.S.</div>
+    <div class="muted" style="margin-top:12px;font-size:16px;">license plates have been scanned by Flock cameras across the U.S. since you arrived</div>
     <div class="dim" style="font-size:12px;margin-top:10px;">Estimated from 20&nbsp;billion+ scans logged every month nationwide (~7,700 every second). Yours is almost certainly among them.</div>
   </div>
 </section>
-<script>
-(function(){var el=document.getElementById("scan-counter");if(!el)return;var perSec=20000000000/(30*24*3600),start=Date.now(),fmt=new Intl.NumberFormat("en-US");function tick(){el.textContent=fmt.format(Math.floor((Date.now()-start)/1000*perSec));requestAnimationFrame(tick);}requestAnimationFrame(tick);})();
-</script>
+
 
 <!-- ===== DISPROPORTION ===== -->
 <section class="wrap section-tight">
@@ -274,5 +272,6 @@
 </footer>
 
 <script src="petition.js"></script>
+<script src="scan-counter.js"></script>
 </body>
 </html>
