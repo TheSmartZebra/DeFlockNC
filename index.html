@@ -180,6 +180,19 @@
   </div>
 </section>
 
+<!-- ===== NC METRICS DASHBOARD ===== -->
+<section class="wrap section">
+  <div class="kicker" style="text-align:center;display:block;margin-bottom:10px;">NC BY THE NUMBERS</div>
+  <h2 style="font-size:30px;font-weight:900;text-transform:uppercase;text-align:center;margin:0 0 38px;">The scale of it in North Carolina</h2>
+  <div class="grid g4">
+    <div class="card" style="text-align:center;"><div style="font-size:40px;font-weight:900;color:var(--orange);line-height:1;">150M+</div><div class="muted" style="font-size:13.5px;margin-top:10px;">plate scans logged by NC's SBI highway pilot (32 agencies) so far</div></div>
+    <div class="card" style="text-align:center;"><div style="font-size:40px;font-weight:900;color:var(--orange);line-height:1;">~1,000</div><div class="muted" style="font-size:13.5px;margin-top:10px;">agencies that can search one NC town's plate data (Apex records)</div></div>
+    <div class="card" style="text-align:center;"><div style="font-size:40px;font-weight:900;color:var(--orange);line-height:1;">30</div><div class="muted" style="font-size:13.5px;margin-top:10px;">NC communities we track — active, being decided, or dropped</div></div>
+    <div class="card" style="text-align:center;"><div style="font-size:40px;font-weight:900;color:var(--orange);line-height:1;">4</div><div class="muted" style="font-size:13.5px;margin-top:10px;">NC communities that have already dropped Flock</div></div>
+  </div>
+  <p class="dim" style="text-align:center;font-size:12px;margin-top:18px;">Sources: <a href="https://www.wral.com/news/nccapitol/surveillance-drivers-camera-alpr-license-plate-reader-nc-budget-public-safety-privacy-july-2026/" target="_blank" rel="noopener">WRAL</a> / <a href="https://www.govtech.com/public-safety/report-calls-for-more-license-plate-scanners-in-north-carolina" target="_blank" rel="noopener">GovTech</a> (SBI pilot) · <a href="https://www.cbs17.com/news/local-news/wake-county-news/some-apex-homeowners-pushing-back-against-license-plate-reader-technology/" target="_blank" rel="noopener">CBS17</a> (Apex data-sharing) · our <a href="cameras.html#deployments">deployment tracker</a>.</p>
+</section>
+
 <!-- ===== CTA ===== -->
 <section style="background:var(--orange);padding:60px 0;">
   <div class="wrap" style="max-width:820px;text-align:center;">
@@ -193,6 +206,25 @@
     </div>
   </div>
 </section>
+
+<!-- ===== SHARE ===== -->
+<section class="wrap section-tight">
+  <div class="card" style="text-align:center;">
+    <div class="kicker" style="margin-bottom:10px;">SPREAD THE WORD</div>
+    <h2 style="font-size:26px;font-weight:900;text-transform:uppercase;margin:0 0 10px;">Most people don't know this is happening</h2>
+    <p class="muted" style="max-width:620px;margin:0 auto 22px;font-size:15px;">One share can put a Flock camera on your neighbors' radar before the next vote. Post it:</p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+      <a class="btn btn-ghost" href="https://twitter.com/intent/tweet?text=NC%20just%20made%20Flock%20ALPR%20mass%20surveillance%20permanent%20on%20our%20highways%20%E2%80%94%20no%20warrant%2C%20no%20opt-out.%20See%20where%20cameras%20are%20near%20you%20and%20take%20action%3A&url=https%3A//deflocknc.org/" target="_blank" rel="noopener">Share on X</a>
+      <a class="btn btn-ghost" href="https://bsky.app/intent/compose?text=NC%20just%20made%20Flock%20ALPR%20mass%20surveillance%20permanent%20on%20our%20highways%20%E2%80%94%20no%20warrant%2C%20no%20opt-out.%20See%20where%20cameras%20are%20near%20you%20and%20take%20action%3A%20https%3A//deflocknc.org/" target="_blank" rel="noopener">Bluesky</a>
+      <a class="btn btn-ghost" href="https://www.reddit.com/submit?url=https%3A//deflocknc.org/&title=Ban%20Flock%20ALPR%20mass%20surveillance%20in%20North%20Carolina" target="_blank" rel="noopener">Reddit</a>
+      <a class="btn btn-ghost" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//deflocknc.org/" target="_blank" rel="noopener">Facebook</a>
+      <button type="button" class="btn btn-ghost" id="copy-link" data-url="https://deflocknc.org/">Copy link</button>
+    </div>
+  </div>
+</section>
+<script>
+(function(){var b=document.getElementById("copy-link");if(!b)return;b.addEventListener("click",function(){var u=b.getAttribute("data-url");function ok(){var t=b.textContent;b.textContent="Copied ✓";setTimeout(function(){b.textContent=t;},1600);}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(u).then(ok,ok);}else{var i=document.createElement("input");i.value=u;document.body.appendChild(i);i.select();try{document.execCommand("copy");}catch(e){}document.body.removeChild(i);ok();}});})();
+</script>
 
 <!-- ===== FOOTER ===== -->
 <footer class="footer wrap">
