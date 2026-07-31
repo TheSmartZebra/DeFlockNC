@@ -67,6 +67,23 @@
     return out;
   }
 
+  /* Build a scroll-to-text-fragment so the result link jumps to the exact
+     spot on the page. Uses the matched phrase (or first term) verbatim so it
+     stays within one text node and reliably highlights on arrival. */
+  function fragHash(text, terms, q) {
+    var lower = text.toLowerCase(), phrase = '';
+    var qi = lower.indexOf(q.toLowerCase());
+    if (qi !== -1) phrase = text.substr(qi, q.length);
+    else {
+      for (var i = 0; i < terms.length; i++) {
+        var ti = lower.indexOf(terms[i]);
+        if (ti !== -1) { phrase = text.substr(ti, terms[i].length); break; }
+      }
+    }
+    if (!phrase) return '';
+    return '#:~:text=' + encodeURIComponent(phrase).replace(/-/g, '%2D');
+  }
+
   function run() {
     var q = input.value.trim();
     if (q.length < 2) {
@@ -93,7 +110,7 @@
         ? hits.length + (hits.length === 1 ? ' page matches' : ' pages match') + ' “' + q + '”'
         : 'No matches for “' + q + '” — try fewer or different words.';
       results.innerHTML = hits.map(function (h) {
-        return '<a class="card" href="' + h.p.u + (terms[0] ? '' : '') + '" style="display:block;color:var(--ink);margin-bottom:14px;">' +
+        return '<a class="card" href="' + h.p.u + fragHash(h.p.text, terms, q) + '" style="display:block;color:var(--ink);margin-bottom:14px;">' +
           '<div style="font-size:18px;font-weight:800;margin-bottom:6px;color:var(--orange);">' + escHtml(h.p.t) + '</div>' +
           '<div class="muted" style="font-size:14px;line-height:1.6;">' + snippet(h.p.text, terms) + '</div>' +
           '</a>';
