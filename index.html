@@ -108,6 +108,27 @@
   <p class="dim" style="text-align:center;font-size:12px;margin-top:16px;">Near-total surveillance to catch a tiny fraction — that's the core injustice. Sources: <a href="https://www.aclu.org/campaigns-initiatives/get-the-flock-out" target="_blank" rel="noopener">ACLU</a> (under 1% of ALPR scans connect to a crime) · <a href="https://www.eff.org/pages/automated-license-plate-readers-alpr" target="_blank" rel="noopener">EFF</a> (ALPRs scan every driver — the overwhelming majority innocent).</p>
 </section>
 
+<!-- ===== OVERWATCH ===== -->
+<section class="wrap section" id="overwatch">
+  <style>
+    #ow-grid{display:grid;grid-template-columns:repeat(40,1fr);gap:3px;max-width:560px;margin:0 auto;}
+    .ow-dot{aspect-ratio:1;border-radius:50%;background:#2a2d33;}
+    .ow-hit{background:var(--orange);box-shadow:0 0 6px rgba(255,90,31,.6);}
+  </style>
+  <div class="kicker" style="text-align:center;display:block;margin-bottom:10px;">OVERWATCH · INTERACTIVE</div>
+  <h2 style="font-size:30px;font-weight:900;text-transform:uppercase;text-align:center;margin:0 0 12px;">What all that scanning actually catches</h2>
+  <p class="muted" style="text-align:center;max-width:700px;margin:0 auto 30px;font-size:15px;">Each dot is one of 1,000 license plates a Flock camera scans in North Carolina. The orange dots are the <strong>fewer than 10</strong> ever linked to a crime. Every other dot is an innocent driver — photographed, logged, kept up to 90 days, and shared with up to ~1,000 agencies.</p>
+  <div id="ow-grid" role="img" aria-label="A grid of 1,000 dots; fewer than 10 are highlighted, representing the under-1% of plate scans ever tied to a crime."></div>
+  <div style="display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-top:20px;font-size:13px;">
+    <span class="muted"><span style="display:inline-block;width:11px;height:11px;border-radius:50%;background:var(--orange);vertical-align:middle;margin-right:7px;"></span>Linked to a crime (under 1%)</span>
+    <span class="muted"><span style="display:inline-block;width:11px;height:11px;border-radius:50%;background:#2a2d33;vertical-align:middle;margin-right:7px;"></span>Innocent driver, logged anyway</span>
+  </div>
+  <p class="dim" style="text-align:center;font-size:12px;margin-top:18px;">Ratio from the <a href="https://www.aclu.org/campaigns-initiatives/get-the-flock-out" target="_blank" rel="noopener">ACLU</a> (under 1% of ALPR scans connect to a crime). Concept adapted for NC from <a href="https://deflockapex.org/" target="_blank" rel="noopener">DeFlock Apex’s “Overwatch”</a>. <a href="near-you.html">See the cameras near you →</a></p>
+</section>
+<script>
+(function(){var g=document.getElementById("ow-grid");if(!g)return;var TOTAL=1000,HITS=8,hit={},k=0;while(k<HITS){var r=Math.floor(Math.random()*TOTAL);if(!hit[r]){hit[r]=1;k++;}}var f=document.createDocumentFragment();for(var i=0;i<TOTAL;i++){var d=document.createElement("span");d.className=hit[i]?"ow-dot ow-hit":"ow-dot";f.appendChild(d);}g.appendChild(f);})();
+</script>
+
 <!-- ===== PROBLEM ===== -->
 <section class="wrap section split">
   <div>
@@ -225,6 +246,19 @@
 <script>
 (function(){var b=document.getElementById("copy-link");if(!b)return;b.addEventListener("click",function(){var u=b.getAttribute("data-url");function ok(){var t=b.textContent;b.textContent="Copied ✓";setTimeout(function(){b.textContent=t;},1600);}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(u).then(ok,ok);}else{var i=document.createElement("input");i.value=u;document.body.appendChild(i);i.select();try{document.execCommand("copy");}catch(e){}document.body.removeChild(i);ok();}});})();
 </script>
+
+<!-- ===== ACKNOWLEDGMENTS ===== -->
+<section class="wrap section">
+  <div class="kicker" style="text-align:center;display:block;margin-bottom:10px;">PART OF THE DEFLOCK NETWORK</div>
+  <h2 style="font-size:28px;font-weight:900;text-transform:uppercase;text-align:center;margin:0 0 12px;">We didn’t do this alone</h2>
+  <p class="muted" style="text-align:center;max-width:720px;margin:0 auto 32px;font-size:15px;">DeFlock NC builds on the work of others fighting ALPR surveillance. We’ve borrowed ideas, tools and data from these campaigns — go support them:</p>
+  <div class="grid g3">
+    <a class="card" href="https://deflockapex.org/" target="_blank" rel="noopener" style="color:var(--ink);"><div class="kicker">DEFLOCK APEX</div><div style="font-size:18px;font-weight:800;margin:10px 0 6px;">DeFlock Apex →</div><div class="muted" style="font-size:13.5px;">Their live scan counter and “Overwatch” demonstration, the council scorecard, and the by-the-numbers dashboard directly inspired features on this site.</div></a>
+    <a class="card" href="https://deflockilm.org/" target="_blank" rel="noopener" style="color:var(--ink);"><div class="kicker">WILMINGTON</div><div style="font-size:18px;font-weight:800;margin:10px 0 6px;">DeFlock ILM →</div><div class="muted" style="font-size:13.5px;">Their town-by-town NC tracker and public-records repository informed much of our deployment data.</div></a>
+    <a class="card" href="https://deflock.org/" target="_blank" rel="noopener" style="color:var(--ink);"><div class="kicker">NATIONAL</div><div style="font-size:18px;font-weight:800;margin:10px 0 6px;">DeFlock.org →</div><div class="muted" style="font-size:13.5px;">The crowdsourced camera map and open-source tools the whole movement runs on.</div></a>
+  </div>
+  <p class="dim" style="text-align:center;font-size:12px;margin-top:18px;">News and legal facts throughout the site are cited to their original sources (WRAL, INDY Week, WECT, CBS17, ACLU, EFF and others).</p>
+</section>
 
 <!-- ===== FOOTER ===== -->
 <footer class="footer wrap">
