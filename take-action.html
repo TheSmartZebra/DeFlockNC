@@ -160,6 +160,59 @@
   </div>
 </section>
 
+<!-- ===== EMAIL TEMPLATES ===== -->
+<section class="wrap section" id="email-templates">
+  <div class="kicker" style="margin-bottom:10px;">COPY, PASTE, SEND</div>
+  <h2 style="font-size:28px;font-weight:900;text-transform:uppercase;margin:0 0 10px;">Email your officials</h2>
+  <p class="muted" style="margin:0 0 24px;max-width:760px;">Copy a message, paste it into your own email, add your name and a personal line or two, and send it to the people who represent you. A short note from a constituent carries real weight. <a href="https://www.ncleg.gov/FindYourLegislators" target="_blank" rel="noopener">Find your NC legislators &rarr;</a></p>
+  <div class="grid g2">
+    <div class="card">
+      <div class="kicker" style="margin-bottom:8px;">TO YOUR NC LEGISLATORS</div>
+      <div style="font-size:18px;font-weight:800;margin-bottom:12px;">Statewide ALPR limits</div>
+      <pre id="tpl-state" style="white-space:pre-wrap;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;line-height:1.55;color:var(--mut);background:var(--bg);border:1px solid var(--border2);border-radius:8px;padding:14px;max-height:300px;overflow:auto;margin:0 0 14px;">SUBJECT: Please rein in license plate reader surveillance in North Carolina
+
+Dear [Senator / Representative name],
+
+I'm a constituent in [your town or ZIP]. I'm concerned about the fast, largely unregulated spread of Flock Safety and other automated license plate readers (ALPRs) across North Carolina - including the new permanent program on our state highways.
+
+These cameras photograph and log every vehicle that passes, not just suspects. Fewer than 1% of scans are ever tied to a crime, yet the records on everyone else are kept for up to 90 days and can be searched by hundreds or thousands of outside agencies, including out-of-state and federal ones.
+
+I'm asking you to support clear statewide limits: local public approval before any agency deploys ALPRs, strict caps on data sharing (especially with federal immigration authorities), shorter retention, independent audits, and real penalties for misuse.
+
+Surveillance this powerful should be decided by the public and written into law - not left to a vendor setting a chief can change. Please tell me where you stand.
+
+Thank you,
+[Your name]
+[Your street or ZIP]</pre>
+      <button type="button" class="btn btn-orange" data-copy="tpl-state">Copy this email</button>
+    </div>
+    <div class="card">
+      <div class="kicker" style="margin-bottom:8px;">TO YOUR CITY / COUNTY BOARD</div>
+      <div style="font-size:18px;font-weight:800;margin-bottom:12px;">Don't renew the local contract</div>
+      <pre id="tpl-local" style="white-space:pre-wrap;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;line-height:1.55;color:var(--mut);background:var(--bg);border:1px solid var(--border2);border-radius:8px;padding:14px;max-height:300px;overflow:auto;margin:0 0 14px;">SUBJECT: Please don't renew our Flock camera contract
+
+Dear [Council member / Commissioner name],
+
+I'm a resident of [town or county]. I'm asking you to decline to renew - or to cancel - our community's contract with Flock Safety.
+
+Automated license plate readers photograph and log every vehicle that passes, building a searchable record of law-abiding residents' everyday movements. That data can be searched by roughly a thousand outside agencies, and NC communities including Hillsborough, Pittsboro, Chatham County, and Macon County have already ended their contracts over these exact concerns.
+
+Before any vote to renew, I'm asking for: a public hearing, published retention and data-sharing policies, an independent audit of who has searched our data and why, and a commitment not to share with federal immigration enforcement.
+
+Please put this to a public vote, and let me know how you intend to vote.
+
+Thank you,
+[Your name]
+[Your address]</pre>
+      <button type="button" class="btn btn-orange" data-copy="tpl-local">Copy this email</button>
+    </div>
+  </div>
+  <p class="dim" style="font-size:12.5px;margin-top:16px;">Personalize the [bracketed] parts and add one sentence about why this matters to you &mdash; that's what makes it land. Prefer the phone? These work as call scripts too.</p>
+</section>
+<script>
+(function(){document.querySelectorAll("[data-copy]").forEach(function(b){b.addEventListener("click",function(){var el=document.getElementById(b.getAttribute("data-copy"));if(!el)return;var t=el.innerText;function ok(){var o=b.textContent;b.textContent="Copied ✓";setTimeout(function(){b.textContent=o;},1600);}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,ok);}else{var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);try{document.execCommand("copy");}catch(e){}s.removeAllRanges();ok();}});});})();
+</script>
+
 <!-- ===== RECORDS REQUEST GUIDE ===== -->
 <section class="wrap section" id="records-guide">
   <div class="kicker" style="margin-bottom:10px;">STEP 03, IN DETAIL</div>

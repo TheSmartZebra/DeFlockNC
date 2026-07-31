@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OVERWATCH — Point the Lens Back | DeFlock NC</title>
+<meta name="description" content="A DeFlock NC parody: a fake automated license plate reader dashboard aimed at the officials and agencies who approve and run NC's surveillance — and, in Resident Mode, at ordinary residents. All data is fabricated. The point is to feel it from the watched side.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0f1114">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/favicon-64.png">
+<link rel="stylesheet" href="styles.css?v=7">
+<style>
+  :root{--ok:#3ee08f;--hit:#ff5a5a;--sys:#0c0f12;--panel2:#12161b;}
+  body{background:#0a0c0f;}
+  .ow-top{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:14px;
+    flex-wrap:wrap;padding:12px 20px;background:#0a0c0feb;backdrop-filter:blur(8px);border-bottom:1px solid #1c2128;}
+  .ow-brand{display:flex;align-items:center;gap:10px;}
+  .ow-eye{width:34px;height:34px;border-radius:8px;background:#10221a;border:1px solid #2f6b45;display:flex;align-items:center;justify-content:center;}
+  .ow-eye svg{width:20px;height:20px;stroke:var(--ok);fill:none;stroke-width:2;}
+  .ow-name{font-weight:900;letter-spacing:.06em;font-size:17px;}
+  .ow-name small{display:block;font-weight:700;font-size:9.5px;letter-spacing:.18em;color:#5f6b62;}
+  .ow-live{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .ow-count{font-family:ui-monospace,Menlo,Consolas,monospace;background:#10141a;border:1px solid #1c2128;border-radius:8px;padding:7px 12px;font-size:13px;color:#cfd6dd;}
+  .ow-count b{color:var(--ok);}
+  .ow-dot-live{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:var(--ok);font-weight:700;}
+  .ow-dot-live::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 8px var(--ok);animation:owpulse 1.6s infinite;}
+  @keyframes owpulse{0%,100%{opacity:1}50%{opacity:.35}}
+  .ow-toggle{display:inline-flex;border:1px solid #2a323b;border-radius:8px;overflow:hidden;font-size:12px;font-weight:800;}
+  .ow-toggle button{background:transparent;color:#8a94a0;border:none;padding:8px 12px;cursor:pointer;font-family:inherit;}
+  .ow-toggle button.on{background:var(--ok);color:#07120c;}
+  .ow-banner{background:repeating-linear-gradient(45deg,#20160a,#20160a 14px,#0a0c0f 14px,#0a0c0f 28px);
+    border-bottom:1px solid #3a2a12;padding:9px 20px;text-align:center;font-size:12.5px;color:#ffce8a;font-weight:700;letter-spacing:.02em;}
+  .ow-wrap{max-width:1180px;margin:0 auto;padding:26px 20px 60px;}
+  .ow-ask{background:var(--panel2);border:1px solid #1c2128;border-radius:12px;padding:18px;margin-bottom:22px;}
+  .ow-ask h2{font-size:12px;letter-spacing:.14em;color:var(--ok);margin:0 0 12px;font-weight:800;}
+  .ow-ask .row{display:flex;gap:10px;flex-wrap:wrap;}
+  .ow-ask input{flex:1;min-width:240px;background:#0a0e12;border:1px solid #232a32;border-radius:8px;color:var(--ink);
+    font-size:15px;padding:13px 15px;outline:none;font-family:inherit;}
+  .ow-ask input:focus{border-color:var(--ok);}
+  .ow-ask .go{background:var(--ok);color:#07120c;border:none;border-radius:8px;font-weight:800;padding:0 22px;cursor:pointer;font-family:inherit;font-size:14px;}
+  .ow-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
+  .ow-chips button{background:#0a0e12;border:1px solid #232a32;color:#aeb7c1;border-radius:20px;padding:7px 13px;font-size:12.5px;cursor:pointer;font-family:inherit;}
+  .ow-chips button:hover{border-color:var(--ok);color:var(--ink);}
+  #ow-answer{margin-top:14px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;line-height:1.7;color:#cfd6dd;
+    background:#0a0e12;border:1px solid #232a32;border-left:3px solid var(--ok);border-radius:0 8px 8px 0;padding:14px 16px;display:none;white-space:pre-wrap;}
+  .ow-tiles{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:22px;}
+  .ow-tile{background:var(--panel2);border:1px solid #1c2128;border-radius:12px;padding:16px;}
+  .ow-tile .k{font-size:10.5px;letter-spacing:.1em;color:#6f7a85;text-transform:uppercase;}
+  .ow-tile .v{font-size:30px;font-weight:900;margin-top:8px;line-height:1;font-family:ui-monospace,Menlo,Consolas,monospace;}
+  .ow-tile .s{font-size:11.5px;color:#6f7a85;margin-top:8px;}
+  .ow-tile.hit .v{color:var(--hit);}
+  .ow-grid2{display:grid;grid-template-columns:1.15fr .85fr;gap:16px;margin-bottom:22px;}
+  .ow-panel{background:var(--panel2);border:1px solid #1c2128;border-radius:12px;overflow:hidden;}
+  .ow-phead{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid #1c2128;}
+  .ow-phead h3{margin:0;font-size:14px;font-weight:800;}
+  .ow-map{position:relative;height:420px;background:
+      linear-gradient(#0a0e1200,#0a0e12),
+      repeating-linear-gradient(0deg,#12181f,#12181f 1px,transparent 1px,transparent 46px),
+      repeating-linear-gradient(90deg,#12181f,#12181f 1px,transparent 1px,transparent 46px),#0a0e12;}
+  .ow-cam{position:absolute;transform:translate(-50%,-50%);}
+  .ow-cam i{display:block;width:9px;height:9px;border-radius:50%;background:var(--ok);box-shadow:0 0 8px var(--ok);}
+  .ow-cam span{position:absolute;left:12px;top:-4px;font-family:ui-monospace,monospace;font-size:9px;color:#5f6b62;white-space:nowrap;}
+  .ow-cam.hit i{background:var(--hit);box-shadow:0 0 12px var(--hit);animation:owpulse 1s infinite;}
+  .ow-feed{max-height:420px;overflow-y:auto;}
+  .ow-read{display:flex;gap:12px;padding:12px 14px;border-bottom:1px solid #151b21;align-items:flex-start;}
+  .ow-plate{flex-shrink:0;width:66px;border:1px solid #2a323b;border-radius:5px;background:#0a0e12;text-align:center;padding:5px 2px;}
+  .ow-plate small{display:block;font-size:6.5px;letter-spacing:.05em;color:#5f6b62;}
+  .ow-plate b{font-family:ui-monospace,monospace;font-size:12px;color:#cfd6dd;letter-spacing:.02em;}
+  .ow-rbody{flex:1;min-width:0;}
+  .ow-rrole{font-weight:800;font-size:14px;}
+  .ow-rrole.off{color:#ff8a5a;} .ow-rrole.res{color:var(--ok);}
+  .ow-btag{display:inline-block;font-size:9px;font-weight:800;letter-spacing:.05em;padding:1px 6px;border-radius:4px;margin-left:6px;vertical-align:middle;}
+  .ow-btag.o{background:#3a2318;color:#ffb27a;} .ow-btag.a{background:#2a2740;color:#b9a8ff;} .ow-btag.r{background:#10221a;color:#7ee0a0;}
+  .ow-btag.h{background:#3a1a1a;color:#ff9a8a;}
+  .ow-rmeta{font-size:12px;color:#8a94a0;margin-top:3px;}
+  .ow-rmeta b{color:#aeb7c1;font-weight:600;}
+  .ow-time{flex-shrink:0;font-family:ui-monospace,monospace;font-size:11px;color:#5f6b62;}
+  .ow-share{background:var(--panel2);border:1px solid #26402f;border-radius:12px;padding:22px;margin-bottom:22px;}
+  .ow-share .lbl{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--ok);border:1px solid #2f6b45;border-radius:20px;padding:3px 10px;margin-bottom:12px;}
+  .ow-share .g{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px;}
+  .ow-share .g .v{font-size:26px;font-weight:900;color:var(--ink);font-family:ui-monospace,monospace;}
+  .ow-share .g .d{font-size:13px;color:#8a94a0;margin-top:6px;line-height:1.5;}
+  .ow-about{background:var(--panel2);border:1px solid #1c2128;border-radius:12px;padding:26px;}
+  .ow-about h2{font-size:22px;font-weight:900;margin:0 0 4px;}
+  .ow-about .sub{color:var(--ok);font-size:12px;font-weight:800;letter-spacing:.08em;margin-bottom:16px;}
+  .ow-about p{color:#aeb7c1;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:760px;}
+  .ow-about ul{margin:0 0 14px;padding-left:20px;color:#aeb7c1;font-size:14px;line-height:1.7;max-width:760px;}
+  .ow-about strong{color:var(--ink);}
+  @media(max-width:820px){.ow-tiles{grid-template-columns:repeat(2,1fr)}.ow-grid2{grid-template-columns:1fr}.ow-share .g{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- ===== OVERWATCH TOP BAR ===== -->
+<header class="ow-top">
+  <div class="ow-brand">
+    <span class="ow-eye"><svg viewBox="0 0 24 24"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></span>
+    <span class="ow-name">OVERWATCH<small>PUBLIC ACCOUNTABILITY NETWORK</small></span>
+  </div>
+  <div class="ow-live">
+    <div class="ow-toggle" id="ow-mode">
+      <button data-mode="officials" class="on">Officials + Agencies</button>
+      <button data-mode="resident">A Resident</button>
+    </div>
+    <div class="ow-count"><b id="ow-since">0</b> reads since you arrived</div>
+    <span class="ow-dot-live">Live</span>
+    <a href="index.html" style="font-size:12px;color:#8a94a0;">← DeFlock NC</a>
+  </div>
+</header>
+
+<div class="ow-banner">● DEMONSTRATION · FABRICATED DATA — no real vehicles or people are tracked. This is a parody. Scroll down for what it is and why.</div>
+
+<main class="ow-wrap">
+
+  <!-- ASK -->
+  <section class="ow-ask">
+    <h2>● ASK OVERWATCH · NATURAL-LANGUAGE QUERY</h2>
+    <div class="row">
+      <input id="ow-q" type="text" placeholder="Where was the Police Chief last night? Who travels with the Mayor?" aria-label="Ask Overwatch">
+      <button class="go" id="ow-go">Query</button>
+    </div>
+    <div class="ow-chips" id="ow-chips"></div>
+    <div id="ow-answer"></div>
+  </section>
+
+  <!-- TILES -->
+  <section class="ow-tiles">
+    <div class="ow-tile"><div class="k">Cameras online</div><div class="v" style="color:var(--ok)">3,000+</div><div class="s">NC ALPRs on the DeFlock map</div></div>
+    <div class="ow-tile"><div class="k">Reads today</div><div class="v" id="ow-today">0</div><div class="s">across the network</div></div>
+    <div class="ow-tile"><div class="k">Tracked subjects</div><div class="v" id="ow-subjects">12</div><div class="s" id="ow-subjects-s">officials · staff · agencies</div></div>
+    <div class="ow-tile hit"><div class="k">Hotlist hits (24h)</div><div class="v">2,364</div><div class="s">subjects seen</div></div>
+    <div class="ow-tile"><div class="k">Retention</div><div class="v">90<span style="font-size:15px"> days</span></div><div class="s">NC legal cap — rolling</div></div>
+  </section>
+
+  <!-- MAP + FEED -->
+  <section class="ow-grid2">
+    <div class="ow-panel">
+      <div class="ow-phead"><h3>Live Detection Map · North Carolina</h3><span class="ow-dot-live">Streaming</span></div>
+      <div class="ow-map" id="ow-map"></div>
+    </div>
+    <div class="ow-panel">
+      <div class="ow-phead"><h3 id="ow-feed-title">Live Read Feed</h3><span style="font-size:10.5px;letter-spacing:.1em;color:#5f6b62;">AUTO-UPDATING</span></div>
+      <div class="ow-feed" id="ow-feed"></div>
+    </div>
+  </section>
+
+  <!-- SHARING (REAL) -->
+  <section class="ow-share">
+    <span class="lbl">SHARING · REAL PUBLIC-RECORDS DATA (NOT PARODY)</span>
+    <p style="color:#aeb7c1;font-size:14px;margin:0;max-width:820px;">Everything above is fabricated. These figures are <strong style="color:var(--ink)">real</strong>, drawn from public-records research into how NC Flock networks actually share data. Verify the current numbers against the source before quoting.</p>
+    <div class="g">
+      <div><div class="v">~1,000</div><div class="d">agencies (incl. 2 federal) that can search one NC town's plate data — Apex. <a href="https://www.cbs17.com/news/local-news/wake-county-news/some-apex-homeowners-pushing-back-against-license-plate-reader-technology/" target="_blank" rel="noopener">CBS17</a></div></div>
+      <div><div class="v">2.98M</div><div class="d">searches logged against New Hanover County's network. <a href="https://deflockilm.org/" target="_blank" rel="noopener">DeFlock ILM</a></div></div>
+      <div><div class="v">3,487</div><div class="d">agencies that searched Greensboro (NC A&amp;T) cameras 1.39M times in 3 months — mostly out of state.</div></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="ow-about">
+    <h2>What this is</h2>
+    <div class="sub">A DEFLOCK NC CIVIC-EDUCATION DEMONSTRATION</div>
+    <p>OVERWATCH is a <strong>parody</strong>. It borrows the look and the powers of a real automated-license-plate-reader dashboard and points them the other way — at the officials who approve North Carolina's surveillance programs, the staff who run them, and the agencies that search the data. Flip to <strong>Resident Mode</strong> and it turns those same powers on ordinary people going about ordinary days.</p>
+    <p>The point is simple: it's hard to feel what a surveillance system does when you're not the one inside it. This turns the lens around so anyone can see it from the watched side.</p>
+    <ul>
+      <li>Every plate, location, timestamp, association and "prediction" above is <strong>fabricated</strong>.</li>
+      <li>Plates use a synthetic <strong>OVR-</strong> format — not real North Carolina plates. No real vehicle is tracked.</li>
+      <li>No home addresses appear. Only <strong>public roles and public buildings</strong> are shown, and only as commentary.</li>
+      <li>The one exception is the <strong>Sharing</strong> panel — those figures are real, from public-records research, and should be verified before you quote them.</li>
+    </ul>
+    <p>The ask was never about one vendor. It's about <strong>consent</strong>: surveillance this powerful should be decided by a public vote and written into a binding ordinance — not left to a setting any police chief can change. Concept adapted for NC from <a href="https://deflockapex.org/" target="_blank" rel="noopener">DeFlock Apex's OVERWATCH</a>, whose civic-education demonstration inspired this one.</p>
+    <p style="margin-top:20px;"><a class="btn btn-orange btn-lg" href="take-action.html">Demand a public vote →</a> <a class="btn btn-ghost btn-lg" href="near-you.html">See real cameras near you →</a></p>
+  </section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer wrap">
+  <div class="dim">© 2026 DeFlock NC · A parody for civic education · Contact <a href="mailto:info@deflocknc.org">info@deflocknc.org</a> · Not affiliated with Flock Safety, Inc., or DeFlock.org.</div>
+  <div class="soc">
+    <a href="index.html">Home</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://deflockapex.org/" target="_blank" rel="noopener">DeFlock Apex</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var OFFICIALS=[
+    {role:"State Senator",cls:"off",tag:["OFFICIAL","o"],plate:"OVR-GA014",veh:"Silver Sedan",loc:"State Legislative Building",cam:"CAM-12",spd:22},
+    {role:"Police Chief",cls:"off",tag:["AGENCY","a"],plate:"OVR-PD002",veh:"Unmarked Tahoe",loc:"Municipal Center",cam:"CAM-04",spd:31},
+    {role:"County Commissioner",cls:"off",tag:["OFFICIAL","o"],plate:"OVR-CC005",veh:"Pickup",loc:"County Courthouse",cam:"CAM-09",spd:18},
+    {role:"SBI Investigator",cls:"off",tag:["AGENCY","a"],plate:"OVR-SBI11",veh:"Sedan",loc:"US-70 corridor",cam:"CAM-02",spd:58},
+    {role:"State Highway Patrol",cls:"off",tag:["AGENCY","a"],plate:"OVR-HP041",veh:"Dodge Charger",loc:"I-40, mile 273",cam:"CAM-16",spd:71},
+    {role:"Public Safety Chair",cls:"off",tag:["OFFICIAL","o"],plate:"OVR-CC003",veh:"White F-150",loc:"City Hall",cam:"CAM-07",spd:27},
+    {role:"Mayor",cls:"off",tag:["OFFICIAL","o"],plate:"OVR-MY001",veh:"Sedan",loc:"Town Hall",cam:"CAM-01",spd:20},
+    {role:"Sheriff's Deputy",cls:"off",tag:["AGENCY","a"],plate:"OVR-SO023",veh:"Interceptor",loc:"Patrol corridor",cam:"CAM-13",spd:44}
+  ];
+  var RESIDENTS=[
+    {role:"A Resident",cls:"res",tag:["RESIDENT","r"],plate:"OVR-8842",veh:"Minivan",loc:"Elementary-school pickup",cam:"CAM-05",spd:12},
+    {role:"Night-shift Nurse",cls:"res",tag:["RESIDENT","r"],plate:"OVR-2207",veh:"Hatchback",loc:"Hospital district · 3:14 AM",cam:"CAM-08",spd:33},
+    {role:"Churchgoer",cls:"res",tag:["RESIDENT","r"],plate:"OVR-5591",veh:"Sedan",loc:"Sunday · Main St",cam:"CAM-03",spd:19},
+    {role:"Teenager",cls:"res",tag:["RESIDENT","r"],plate:"OVR-7734",veh:"Coupe",loc:"Cinema parking lot",cam:"CAM-11",spd:9},
+    {role:"Protester",cls:"res",tag:["RESIDENT","r"],plate:"OVR-3160",veh:"Sedan",loc:"Near a Capitol rally",cam:"CAM-14",spd:0},
+    {role:"Clinic Visitor",cls:"res",tag:["RESIDENT","r"],plate:"OVR-9012",veh:"SUV",loc:"Health-clinic lot",cam:"CAM-06",spd:15}
+  ];
+  var mode="officials";
+  function set(){ return mode==="officials"?OFFICIALS:RESIDENTS; }
+
+  // live "reads since you arrived" + reads today
+  var start=Date.now(), perSec=41, baseToday=1180000, fmt=new Intl.NumberFormat("en-US");
+  var since=document.getElementById("ow-since"), today=document.getElementById("ow-today");
+  function counters(){ var n=Math.floor((Date.now()-start)/1000*perSec);
+    since.textContent=fmt.format(n); today.textContent=fmt.format(baseToday+n); requestAnimationFrame(counters); }
+  requestAnimationFrame(counters);
+
+  // map nodes
+  var map=document.getElementById("ow-map");
+  var pts=[[12,22],[26,58],[38,30],[52,68],[46,18],[64,44],[70,74],[24,82],[58,88],[80,30],[86,62],[16,44],[34,50],[72,20],[90,84],[8,68]];
+  var cams=[];
+  pts.forEach(function(p,i){ var c=document.createElement("div"); c.className="ow-cam"; c.style.left=p[0]+"%"; c.style.top=p[1]+"%";
+    c.innerHTML='<i></i><span>CAM-'+String(i+1).padStart(2,"0")+'</span>'; map.appendChild(c); cams.push(c); });
+  function pulse(){ cams.forEach(function(c){c.classList.remove("hit");}); var h=cams[Math.floor(Math.random()*cams.length)]; if(h) h.classList.add("hit"); }
+  setInterval(pulse,2600); pulse();
+
+  // feed
+  var feed=document.getElementById("ow-feed");
+  function pad(n){return String(n).padStart(2,"0");}
+  function stamp(back){ var d=new Date(Date.now()-back*1000); return pad(d.getHours())+":"+pad(d.getMinutes())+":"+pad(d.getSeconds()); }
+  function readRow(s,back){
+    var hot=Math.random()<0.5;
+    var el=document.createElement("div"); el.className="ow-read";
+    el.innerHTML='<div class="ow-plate"><small>NORTH CAROLINA</small><b>'+s.plate+'</b></div>'+
+      '<div class="ow-rbody"><div class="ow-rrole '+s.cls+'">'+s.role+
+        '<span class="ow-btag '+s.tag[1]+'">'+s.tag[0]+'</span>'+(hot?'<span class="ow-btag h">HOTLIST HIT</span>':'')+'</div>'+
+        '<div class="ow-rmeta">'+s.veh+' · <b>Loc:</b> '+s.loc+' · <b>Cam:</b> '+s.cam+' · <b>Spd:</b> '+s.spd+' mph</div></div>'+
+      '<div class="ow-time">'+stamp(back)+'</div>';
+    return el;
+  }
+  var arr=set(); for(var i=0;i<7;i++){ feed.appendChild(readRow(arr[i%arr.length], i*3)); }
+  setInterval(function(){ var a=set(); var s=a[Math.floor(Math.random()*a.length)];
+    feed.insertBefore(readRow(s,0), feed.firstChild); while(feed.children.length>14) feed.removeChild(feed.lastChild); }, 2200);
+
+  // mode toggle
+  var subjects=document.getElementById("ow-subjects"), subjectsS=document.getElementById("ow-subjects-s"),
+      feedTitle=document.getElementById("ow-feed-title");
+  document.getElementById("ow-mode").addEventListener("click",function(e){
+    var b=e.target.closest("button"); if(!b) return;
+    mode=b.getAttribute("data-mode");
+    [].forEach.call(this.children,function(x){x.classList.toggle("on",x===b);});
+    if(mode==="officials"){ subjects.textContent="12"; subjectsS.textContent="officials · staff · agencies"; feedTitle.textContent="Live Read Feed"; }
+    else { subjects.textContent="3.6M"; subjectsS.textContent="every NC driver — including you"; feedTitle.textContent="Live Read Feed · Residents"; }
+    feed.innerHTML=""; var a=set(); for(var i=0;i<7;i++){ feed.appendChild(readRow(a[i%a.length], i*3)); }
+    buildChips();
+  });
+
+  // ask overwatch (canned parody answers)
+  var Q_OFF=[
+    ["Where was the Police Chief last night?","OVR-PD002 · trace (fabricated):\nCAM-04 Municipal Center 21:12 → CAM-07 City Hall 21:41 → CAM-13 residential corridor 23:58.\nPattern: matched 6 of the last 7 nights. This is what one query returns about a real person."],
+    ["Who travels with the Mayor?","OVR-MY001 co-located with OVR-CC003 on 14 reads in 30 days (fabricated).\nInference: frequent companion vehicle. No warrant required to build this."],
+    ["Show the Public Safety Chair's routine","OVR-CC003 (fabricated): weekdays CAM-07 07:5x, CAM-01 12:1x, CAM-16 18:0x.\nHome-departure window inferred to a 9-minute band."],
+    ["How many times was Council Seat A seen this month?","OVR-CC005: 212 reads across 11 cameras this month (fabricated). Every trip, logged and searchable for 90 days."]
+  ];
+  var Q_RES=[
+    ["Where does this resident go on Sundays?","OVR-5591 (fabricated): CAM-03 Main St 09:4x every Sunday → place of worship inferred."],
+    ["Was this car near the protest?","OVR-3160 (fabricated): CAM-14 within 300 ft of the rally, 2 reads. Attendance inferred from a plate."],
+    ["Show the night-shift nurse's pattern","OVR-2207 (fabricated): CAM-08 hospital district 03:1x, 5 nights/week. Shift and home direction inferred."],
+    ["Who visited the clinic this week?","OVR-9012 (fabricated): CAM-06 health-clinic lot, Tue + Fri. A medical visit, now a data point."]
+  ];
+  var chips=document.getElementById("ow-chips"), ans=document.getElementById("ow-answer");
+  function buildChips(){ var set=mode==="officials"?Q_OFF:Q_RES; chips.innerHTML="";
+    set.forEach(function(q){ var b=document.createElement("button"); b.textContent=q[0];
+      b.onclick=function(){ document.getElementById("ow-q").value=q[0]; showAns(q[1]); }; chips.appendChild(b); }); }
+  function showAns(t){ ans.style.display="block"; ans.textContent=t+"\n\n— fabricated. That is the point. —"; }
+  document.getElementById("ow-go").onclick=function(){
+    var set=mode==="officials"?Q_OFF:Q_RES; var v=document.getElementById("ow-q").value.toLowerCase();
+    var m=set.find(function(q){return v && q[0].toLowerCase().indexOf(v.slice(0,8))!==-1;})||set[0]; showAns(m[1]);
+  };
+  document.getElementById("ow-q").addEventListener("keydown",function(e){ if(e.key==="Enter") document.getElementById("ow-go").click(); });
+  buildChips();
+})();
+</script>
+</body>
+</html>
