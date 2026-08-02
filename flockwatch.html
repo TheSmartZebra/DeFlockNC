@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>OVERWATCH — Point the Lens Back | DeFlock NC</title>
+<title>FLOCKWATCH — Point the Lens Back | DeFlock NC</title>
 <meta name="description" content="A DeFlock NC parody: a mock license-plate-reader dashboard turned on the officials and agencies who run North Carolina's surveillance — and, in Resident Mode, on ordinary residents. Political satire and civic education.">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#0f1114">
@@ -11,14 +11,14 @@
 <link rel="apple-touch-icon" href="assets/favicon-64.png">
 <link rel="stylesheet" href="styles.css?v=7">
 <style>
-  :root{--ok:#3ee08f;--hit:#ff5a5a;--off:#ff8a5a;--panel2:#12161b;--line:#1c2128;}
+  :root{--ok:#FF5A1F;--hit:#ff5a5a;--off:#FFC93C;--panel2:#12161b;--line:#1c2128;}
   body{background:#0a0c0f;}
   a{color:var(--ok);}
   .ow-top{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
     padding:12px 20px;background:#0a0c0feb;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
   .ow-brand{display:flex;align-items:center;gap:10px;}
-  .ow-eye{width:34px;height:34px;border-radius:8px;background:#10221a;border:1px solid #2f6b45;display:flex;align-items:center;justify-content:center;}
-  .ow-eye svg{width:20px;height:20px;stroke:var(--ok);fill:none;stroke-width:2;}
+  .ow-eye{width:34px;height:34px;border-radius:8px;background:#241a12;border:1px solid #6b4331;display:flex;align-items:center;justify-content:center;}
+  .ow-eye svg{width:24px;height:24px;}
   .ow-name{font-weight:900;letter-spacing:.06em;font-size:17px;color:var(--ink);}
   .ow-name small{display:block;font-weight:700;font-size:9.5px;letter-spacing:.18em;color:#5f6b62;}
   .ow-exit{display:inline-flex;align-items:center;gap:6px;background:#12161b;border:1px solid #2a323b;color:var(--ink);border-radius:8px;padding:9px 15px;font-size:13px;font-weight:800;text-decoration:none;white-space:nowrap;}
@@ -31,7 +31,7 @@
   @keyframes owp{0%,100%{opacity:1}50%{opacity:.35}}
   .ow-toggle{display:inline-flex;border:1px solid #2a323b;border-radius:8px;overflow:hidden;font-size:12px;font-weight:800;}
   .ow-toggle button{background:transparent;color:#8a94a0;border:none;padding:8px 12px;cursor:pointer;font-family:inherit;}
-  .ow-toggle button.on{background:var(--ok);color:#07120c;}
+  .ow-toggle button.on{background:var(--ok);color:#0f1114;}
   .ow-banner{background:#0c0f12;border-bottom:1px solid #23282e;padding:7px 20px;text-align:center;font-size:11px;letter-spacing:.14em;color:#6f7a85;font-weight:700;}
   .ow-tabs{display:flex;gap:4px;padding:10px 20px 0;max-width:1180px;margin:0 auto;overflow-x:auto;}
   .ow-tabs button{background:transparent;border:none;color:#8a94a0;font-family:inherit;font-weight:700;font-size:14px;padding:10px 16px;border-radius:8px 8px 0 0;cursor:pointer;white-space:nowrap;}
@@ -43,7 +43,7 @@
   .ow-ask .row{display:flex;gap:10px;flex-wrap:wrap;}
   .ow-ask input{flex:1;min-width:240px;background:#0a0e12;border:1px solid #232a32;border-radius:8px;color:var(--ink);font-size:15px;padding:13px 15px;outline:none;font-family:inherit;}
   .ow-ask input:focus{border-color:var(--ok);}
-  .ow-ask .go{background:var(--ok);color:#07120c;border:none;border-radius:8px;font-weight:800;padding:0 22px;cursor:pointer;font-family:inherit;font-size:14px;}
+  .ow-ask .go{background:var(--ok);color:#0f1114;border:none;border-radius:8px;font-weight:800;padding:0 22px;cursor:pointer;font-family:inherit;font-size:14px;}
   .ow-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
   .ow-chips button{background:#0a0e12;border:1px solid #232a32;color:#aeb7c1;border-radius:20px;padding:7px 13px;font-size:12.5px;cursor:pointer;font-family:inherit;}
   .ow-chips button:hover{border-color:var(--ok);color:var(--ink);}
@@ -85,30 +85,30 @@
   .ow-rbody{flex:1;min-width:0;}
   .ow-rrole{font-weight:800;font-size:14px;} .ow-rrole.off{color:var(--off);} .ow-rrole.res{color:var(--ok);}
   .ow-bt{display:inline-block;font-size:9px;font-weight:800;letter-spacing:.05em;padding:1px 6px;border-radius:4px;margin-left:6px;vertical-align:middle;}
-  .ow-bt.o{background:#3a2318;color:#ffb27a;} .ow-bt.a{background:#2a2740;color:#b9a8ff;} .ow-bt.r{background:#10221a;color:#7ee0a0;} .ow-bt.h{background:#3a1a1a;color:#ff9a8a;}
+  .ow-bt.o{background:#3a2318;color:#ffb27a;} .ow-bt.a{background:#2a2740;color:#b9a8ff;} .ow-bt.r{background:#241a12;color:#ffd27a;} .ow-bt.h{background:#3a1a1a;color:#ff9a8a;}
   .ow-rmeta{font-size:12px;color:#8a94a0;margin-top:3px;} .ow-rmeta b{color:#aeb7c1;font-weight:600;}
   .ow-time{flex-shrink:0;font-family:ui-monospace,monospace;font-size:11px;color:#5f6b62;}
   .ow-roster{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;}
   .ow-rc{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:16px;cursor:pointer;}
   .ow-rc:hover{border-color:var(--ok);}
-  .ow-rc .av{width:40px;height:40px;border-radius:9px;background:#12211a;border:1px solid #2f6b45;color:var(--ok);font-weight:900;display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
+  .ow-rc .av{width:40px;height:40px;border-radius:9px;background:#241a12;border:1px solid #6b4331;color:var(--ok);font-weight:900;display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
   .ow-ins{display:grid;grid-template-columns:1.2fr .8fr;gap:16px;}
   .ow-hm{display:grid;grid-template-columns:auto 1fr;gap:6px 8px;}
   .ow-hm .day{font-size:10px;color:#6f7a85;align-self:center;}
   .ow-hmrow{display:grid;grid-template-columns:repeat(24,1fr);gap:3px;}
   .ow-cell{aspect-ratio:1;border-radius:2px;background:#12181f;}
   .ow-freq .fr{display:grid;grid-template-columns:150px 1fr auto;gap:10px;align-items:center;margin-bottom:9px;font-size:13px;color:#aeb7c1;}
-  .ow-bar{height:9px;border-radius:5px;background:#12181f;overflow:hidden;} .ow-bar i{display:block;height:100%;background:linear-gradient(90deg,#1f7a52,var(--ok));}
-  .ow-note{border:1px solid #26402f;border-left:3px solid var(--ok);border-radius:0 10px 10px 0;background:#0c1512;padding:16px 18px;margin-top:16px;}
+  .ow-bar{height:9px;border-radius:5px;background:#12181f;overflow:hidden;} .ow-bar i{display:block;height:100%;background:linear-gradient(90deg,#a34a12,var(--ok));}
+  .ow-note{border:1px solid #4a3320;border-left:3px solid var(--ok);border-radius:0 10px 10px 0;background:#1a1006;padding:16px 18px;margin-top:16px;}
   .ow-note h4{margin:0 0 8px;color:var(--ok);font-size:12px;letter-spacing:.08em;}
   .ow-note p{margin:0;color:#aeb7c1;font-size:14px;line-height:1.7;}
   .ow-anom{border:1px solid #4a2323;border-radius:10px;background:#160e0e;padding:14px 16px;margin-top:14px;color:#ff9a8a;font-size:13px;}
-  .ow-share{background:var(--panel2);border:1px solid #26402f;border-radius:12px;padding:22px;}
-  .ow-share .lbl{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--ok);border:1px solid #2f6b45;border-radius:20px;padding:3px 10px;margin-bottom:12px;}
+  .ow-share{background:var(--panel2);border:1px solid #4a3320;border-radius:12px;padding:22px;}
+  .ow-share .lbl{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--ok);border:1px solid #6b4331;border-radius:20px;padding:3px 10px;margin-bottom:12px;}
   .ow-share .g{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px;}
   .ow-share .g .v{font-size:26px;font-weight:900;color:var(--ink);font-family:ui-monospace,monospace;}
   .ow-share .g .d{font-size:13px;color:#8a94a0;margin-top:6px;line-height:1.5;}
-  .ow-lens{border:1px solid #26402f;border-left:3px solid var(--ok);border-radius:0 12px 12px 0;background:#0c1512;padding:22px;margin:26px 0;}
+  .ow-lens{border:1px solid #4a3320;border-left:3px solid var(--ok);border-radius:0 12px 12px 0;background:#1a1006;padding:22px;margin:26px 0;}
   .ow-lens h3{margin:0 0 8px;color:var(--ok);font-size:12px;letter-spacing:.1em;}
   .ow-lens p{margin:0;color:#cfd6dd;font-size:15px;line-height:1.7;max-width:900px;}
   .ow-cta{border:1px solid var(--line);border-radius:12px;background:radial-gradient(120% 140% at 50% 0,#12161b,#0a0c0f);padding:44px 24px;text-align:center;margin-bottom:26px;}
@@ -125,7 +125,7 @@
   .ow-modal.on{display:flex;}
   .ow-card{width:100%;max-width:640px;background:#0e1319;border:1px solid #232a32;border-radius:16px;padding:26px 28px;}
   .ow-mh{display:flex;gap:16px;align-items:flex-start;}
-  .ow-mh .av{width:56px;height:56px;border-radius:12px;background:#12211a;border:1px solid #2f6b45;color:var(--ok);font-weight:900;font-size:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .ow-mh .av{width:56px;height:56px;border-radius:12px;background:#241a12;border:1px solid #6b4331;color:var(--ok);font-weight:900;font-size:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
   .ow-mh h3{margin:0;font-size:24px;color:var(--ink);} .ow-mh .r{color:#8a94a0;font-size:13px;margin-top:2px;}
   .ow-x{margin-left:auto;background:#12161b;border:1px solid #2a323b;color:#cfd6dd;width:34px;height:34px;border-radius:8px;cursor:pointer;font-size:16px;}
   .ow-mplate{display:inline-block;margin-top:12px;border:1px solid #2a323b;border-radius:6px;background:#f2f4f6;color:#0a0c0f;text-align:center;padding:6px 16px;}
@@ -145,15 +145,15 @@
 <!-- ===== TOP BAR ===== -->
 <header class="ow-top">
   <a class="ow-brand" href="index.html" style="text-decoration:none;" title="Back to DeFlock NC">
-    <span class="ow-eye"><svg viewBox="0 0 24 24"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></span>
-    <span class="ow-name">OVERWATCH<small>PUBLIC ACCOUNTABILITY NETWORK</small></span>
+    <span class="ow-eye"><svg viewBox="0 0 100 100"><g transform="rotate(-15 50 50)"><rect x="26" y="43" width="34" height="15" rx="3" fill="#FF5A1F"/><rect x="58" y="45" width="7" height="11" rx="2" fill="#FF5A1F"/><circle cx="34" cy="50.5" r="3.2" fill="#0f1114"/><rect x="40" y="34" width="4" height="10" fill="#FF5A1F"/><rect x="33" y="31" width="17" height="4" rx="2" fill="#FF5A1F"/></g><circle cx="50" cy="50" r="45" fill="none" stroke="#FF5A1F" stroke-width="8"/><line x1="18" y1="82" x2="82" y2="18" stroke="#FF5A1F" stroke-width="8" stroke-linecap="round"/></svg></span>
+    <span class="ow-name">FLOCKWATCH<small>WATCHING THE WATCHERS · NC</small></span>
   </a>
   <div class="ow-live">
     <div class="ow-toggle" id="ow-mode">
       <button data-mode="officials" class="on">Officials + Agencies</button>
       <button data-mode="resident">A Resident</button>
     </div>
-    <div class="ow-count"><b id="ow-since">0</b> reads since you arrived</div>
+    <div class="ow-count"><b id="ow-since" data-scan-count>0</b> plate reads since you arrived</div>
     <span class="ow-dot-live">Live</span>
     <a href="index.html" class="ow-exit" aria-label="Exit the demonstration and return to DeFlock NC">← Exit to DeFlock&nbsp;NC</a>
   </div>
@@ -174,9 +174,9 @@
   <!-- ===== COMMAND ===== -->
   <section class="ow-panel-v on" data-panel="command">
     <div class="ow-ask">
-      <h2>● ASK OVERWATCH · NATURAL-LANGUAGE QUERY</h2>
+      <h2>● ASK FLOCKWATCH · NATURAL-LANGUAGE QUERY</h2>
       <div class="row">
-        <input id="ow-q" type="text" placeholder="Where was the Police Chief last night? Who travels with the Mayor?" aria-label="Ask Overwatch">
+        <input id="ow-q" type="text" placeholder="Where was the Police Chief last night? Who travels with the Mayor?" aria-label="Ask Flockwatch">
         <button class="go" id="ow-go">Query</button>
       </div>
       <div class="ow-chips" id="ow-chips"></div>
@@ -263,7 +263,7 @@
   <section class="ow-about">
     <h2>What this is</h2>
     <div class="sub">A DEFLOCK NC CIVIC-EDUCATION DEMONSTRATION</div>
-    <p>OVERWATCH is a parody. It borrows the look and the powers of a real automated-license-plate-reader dashboard and points them the other way — at the officials who approve North Carolina's surveillance programs, the staff who run them, and the agencies that search the data. Flip to <strong>Resident Mode</strong> and it turns those same powers on ordinary people going about ordinary days.</p>
+    <p>FLOCKWATCH is a parody. It borrows the look and the powers of a real automated-license-plate-reader dashboard and points them the other way — at the officials who approve North Carolina's surveillance programs, the staff who run them, and the agencies that search the data. Flip to <strong>Resident Mode</strong> and it turns those same powers on ordinary people going about ordinary days.</p>
     <p>The point is simple: it's hard to feel what a surveillance system does when you're not the one inside it. This turns the lens around so anyone can see it from the watched side.</p>
     <ul>
       <li>Every plate, location, timestamp, association and prediction here is invented.</li>
@@ -278,7 +278,7 @@
 </main>
 
 <div class="ow-foot">
-  OVERWATCH is political satire and civic education. It is not affiliated with, endorsed by, or connected to any surveillance vendor or government agency. Every role, plate, vehicle, location and event shown in the demonstration is invented and does not depict the real movements or conduct of any actual person — the figures in the Sharing panel are the exception, drawn from public records. © 2026 DeFlock NC · <a href="index.html">deflocknc.org</a> · <a href="mailto:info@deflocknc.org">info@deflocknc.org</a> · Inspired by <a href="https://deflockapex.org/" target="_blank" rel="noopener">DeFlock Apex</a>.
+  FLOCKWATCH is political satire and civic education. It is not affiliated with, endorsed by, or connected to any surveillance vendor or government agency. Every role, plate, vehicle, location and event shown in the demonstration is invented and does not depict the real movements or conduct of any actual person — the figures in the Sharing panel are the exception, drawn from public records. © 2026 DeFlock NC · <a href="index.html">deflocknc.org</a> · <a href="mailto:info@deflocknc.org">info@deflocknc.org</a> · Inspired by <a href="https://deflockapex.org/" target="_blank" rel="noopener">DeFlock Apex</a>.
 </div>
 
 <!-- ===== PROFILE MODAL ===== -->
@@ -313,8 +313,8 @@
 
   // counters
   var start=Date.now(),perSec=41,baseToday=1180000,fmt=new Intl.NumberFormat("en-US");
-  var since=document.getElementById("ow-since"),today=document.getElementById("ow-today");
-  (function tick(){var n=Math.floor((Date.now()-start)/1000*perSec);since.textContent=fmt.format(n);today.textContent=fmt.format(baseToday+n);requestAnimationFrame(tick);})();
+  var today=document.getElementById("ow-today");
+  (function tick(){var n=Math.floor((Date.now()-start)/1000*perSec);today.textContent=fmt.format(baseToday+n);requestAnimationFrame(tick);})();
 
   // map
   var map=document.getElementById("ow-map"),route=document.getElementById("ow-route");
@@ -329,7 +329,7 @@
     subj=subj||list()[0];
     var seq=[8,12,2,5,9,6].slice(0,5);
     var d="M "+pts[seq[0]][0]+" "+pts[seq[0]][1]+" "+seq.slice(1).map(function(i){return "L "+pts[i][0]+" "+pts[i][1];}).join(" ");
-    route.innerHTML='<path d="'+d+'" fill="none" stroke="#3ee08f" stroke-width="0.7" stroke-linejoin="round" style="filter:drop-shadow(0 0 3px #3ee08f)"/>';
+    route.innerHTML='<path d="'+d+'" fill="none" stroke="#FF5A1F" stroke-width="0.7" stroke-linejoin="round" style="filter:drop-shadow(0 0 3px #FF5A1F)"/>';
     var path=route.firstChild,len=path.getTotalLength();
     path.style.strokeDasharray=len;path.style.strokeDashoffset=len;path.getBoundingClientRect();
     path.style.transition="stroke-dashoffset 2.2s ease";path.style.strokeDashoffset=0;
@@ -402,7 +402,7 @@
         if(h>=7&&h<=9)base=wk?3:1; else if(h>=17&&h<=19)base=wk?4:2; else if(h>=10&&h<=16)base=2; else if(h>=20&&h<=22)base=1; else base=0;
         var v=Math.max(0,Math.min(4,base+(Math.random()<0.25?1:0)-(Math.random()<0.15?1:0)));
         var a=[0.05,0.28,0.5,0.72,1][v];
-        html+='<div class="ow-cell" style="background:rgba(62,224,143,'+a+')"></div>';}
+        html+='<div class="ow-cell" style="background:rgba(255,90,31,'+a+')"></div>';}
       html+='</div>';}
     hm.innerHTML=html;
     var mx=s.top[0][1];
@@ -477,5 +477,6 @@
   buildChips();
 })();
 </script>
+<script src="scan-counter.js"></script>
 </body>
 </html>

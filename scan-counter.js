@@ -1,8 +1,10 @@
 /* Site-wide plate-scan ticker.
    Records the visitor's arrival time once per browsing session (sessionStorage)
    so the count keeps climbing as they move between pages instead of resetting.
-   Drives the big homepage counter (#scan-counter) when it's present; otherwise
-   injects a slim persistent ticker bar pinned to the bottom of every page. */
+   Drives the big homepage counter (#scan-counter) and any element marked with
+   [data-scan-count] (e.g. the FLOCKWATCH header) so they all show the same
+   running number. If no such target exists on a page, it injects a slim
+   persistent ticker bar pinned to the bottom. */
 (function () {
   var KEY = 'dfnc_arrival', t;
   try {
@@ -13,9 +15,14 @@
 
   var PER_SEC = 20000000000 / (30 * 24 * 3600); // ~20 billion U.S. scans / month
   var fmt = new Intl.NumberFormat('en-US');
-  var target = document.getElementById('scan-counter');
 
-  if (!target) {
+  var targets = [];
+  var big = document.getElementById('scan-counter');
+  if (big) targets.push(big);
+  var tagged = document.querySelectorAll('[data-scan-count]');
+  for (var i = 0; i < tagged.length; i++) targets.push(tagged[i]);
+
+  if (!targets.length) {
     var bar = document.createElement('div');
     bar.id = 'dfnc-ticker';
     bar.style.cssText = 'position:fixed;left:0;right:0;bottom:0;z-index:70;' +
@@ -29,11 +36,12 @@
       ' license plates scanned across the U.S. since you arrived ›</a>';
     document.body.appendChild(bar);
     document.body.style.paddingBottom = (bar.offsetHeight || 40) + 'px';
-    target = document.getElementById('dfnc-ticker-n');
+    targets.push(document.getElementById('dfnc-ticker-n'));
   }
 
   (function tick() {
-    target.textContent = fmt.format(Math.floor((Date.now() - t) / 1000 * PER_SEC));
+    var s = fmt.format(Math.floor((Date.now() - t) / 1000 * PER_SEC));
+    for (var j = 0; j < targets.length; j++) targets[j].textContent = s;
     requestAnimationFrame(tick);
   })();
 })();
