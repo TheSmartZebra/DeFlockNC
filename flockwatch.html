@@ -187,7 +187,7 @@
 
     <div class="ow-tiles">
       <div class="ow-tile"><div class="k">Cameras online</div><div class="v" style="color:var(--ok)">3,000+</div><div class="s">NC ALPRs on the DeFlock map</div></div>
-      <div class="ow-tile"><div class="k">Reads today</div><div class="v" id="ow-today">0</div><div class="s">across the U.S. &middot; today</div></div>
+      <div class="ow-tile"><div class="k">Reads today</div><div class="v" id="ow-today">0</div><div class="s">across NC &middot; today</div></div>
       <div class="ow-tile"><div class="k">Tracked subjects</div><div class="v" id="ow-subjects">9</div><div class="s" id="ow-subjects-s">officials · staff · agencies</div></div>
       <div class="ow-tile hit"><div class="k">Hotlist hits (24h)</div><div class="v">2,364</div><div class="s">subjects flagged</div></div>
       <div class="ow-tile"><div class="k">Retention</div><div class="v">90<span style="font-size:15px"> days</span></div><div class="s">NC legal cap · rolling</div></div>
@@ -317,7 +317,7 @@
 
   // counters
   var fmt=new Intl.NumberFormat("en-US");
-  var today=document.getElementById("ow-today"),READ_RATE=20000000000/(30*24*3600);
+  var today=document.getElementById("ow-today"),READ_RATE=500000000/(30*24*3600);
   (function tick(){var now=new Date(),mid=new Date(now.getFullYear(),now.getMonth(),now.getDate());today.textContent=fmt.format(Math.floor((now-mid)/1000*READ_RATE));requestAnimationFrame(tick);})();
 
   // map

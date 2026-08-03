@@ -13,7 +13,7 @@
   } catch (e) { t = String(Date.now()); }
   t = parseInt(t, 10) || Date.now();
 
-  var PER_SEC = 20000000000 / (30 * 24 * 3600); // ~20 billion U.S. scans / month
+  var PER_SEC = 500000000 / (30 * 24 * 3600); // ~500M scans/month across NC (est. from 3,000+ documented NC ALPR cameras)
   var fmt = new Intl.NumberFormat('en-US');
 
   var targets = [];
@@ -33,7 +33,7 @@
     bar.innerHTML =
       '<a href="index.html" style="text-decoration:none;color:inherit;">' +
       '<b id="dfnc-ticker-n" style="color:#FF5A1F;font-weight:900;font-variant-numeric:tabular-nums;">0</b>' +
-      ' license plates scanned across the U.S. since you arrived ›</a>';
+      ' license plates scanned across North Carolina since you arrived ›</a>';
     document.body.appendChild(bar);
     document.body.style.paddingBottom = (bar.offsetHeight || 40) + 'px';
     targets.push(document.getElementById('dfnc-ticker-n'));
