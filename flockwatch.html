@@ -187,7 +187,7 @@
       <div class="ow-tile"><div class="k">Cameras online</div><div class="v" style="color:var(--ok)">3,000+</div><div class="s">NC ALPRs on the DeFlock map</div></div>
       <div class="ow-tile"><div class="k">Reads today</div><div class="v" id="ow-today">0</div><div class="s">across the network</div></div>
       <div class="ow-tile"><div class="k">Tracked subjects</div><div class="v" id="ow-subjects">8</div><div class="s" id="ow-subjects-s">officials · staff · agencies</div></div>
-      <div class="ow-tile"><div class="k">Movements logged</div><div class="v">12,480</div><div class="s">on tracked subjects &middot; 24h</div></div>
+      <div class="ow-tile hit"><div class="k">Hotlist hits (24h)</div><div class="v">2,364</div><div class="s">subjects flagged</div></div>
       <div class="ow-tile"><div class="k">Retention</div><div class="v">90<span style="font-size:15px"> days</span></div><div class="s">NC legal cap · rolling</div></div>
     </div>
 
@@ -308,6 +308,7 @@
     S("Clinic Visitor","res",["RESIDENT","r"],"OVR-9012","Gray SUV","CAM-06",15,"Health-clinic lot",260,"Home district","Home district",90,[["Health clinic",22],["Pharmacy",30],["Home district",150]],[["Household vehicle",40]])
   ];
   var mode="officials";
+  var HOT={"Governor's Office":1,"Senate Leader":1,"Protester":1};
   function list(){ return mode==="officials"?OFFICIALS:RESIDENTS; }
   function byRole(r){ return list().find(function(s){return s.role===r;}); }
 
@@ -344,9 +345,9 @@
   function pad(n){return String(n).padStart(2,"0");}
   function stamp(b){var d=new Date(Date.now()-b*1000);return pad(d.getHours())+":"+pad(d.getMinutes())+":"+pad(d.getSeconds());}
   function row(s,b){
-    var el=document.createElement("div");el.className="ow-read";
+    var hot=HOT[s.role],el=document.createElement("div");el.className="ow-read";
     el.innerHTML='<div class="ow-plate"><small>NORTH CAROLINA</small><b>'+s.plate+'</b></div>'+
-      '<div class="ow-rbody"><div class="ow-rrole '+s.cls+'">'+s.role+'<span class="ow-bt '+s.tag[1]+'">'+s.tag[0]+'</span>'+'</div>'+
+      '<div class="ow-rbody"><div class="ow-rrole '+s.cls+'">'+s.role+'<span class="ow-bt '+s.tag[1]+'">'+s.tag[0]+'</span>'+(hot?'<span class="ow-bt h">HOTLIST HIT</span>':'')+'</div>'+
       '<div class="ow-rmeta">'+s.veh+' · <b>Loc:</b> '+s.loc+' · <b>Cam:</b> '+s.cam+' · <b>Spd:</b> '+s.spd+' mph</div></div>'+
       '<div class="ow-time">'+stamp(b)+'</div>';
     el.onclick=function(){openModal(s);};return el;
@@ -440,7 +441,7 @@
   };
   function answer(s){
     var a1=s.assoc[0]?s.assoc[0][0]:"a companion vehicle", a2=s.assoc[1]?s.assoc[1][0]:null;
-    return '<b>'+s.role+'</b> ('+s.plate+', '+s.veh+') was last captured at <b>'+s.top[0][0]+'</b>, '+(1+Math.floor(Math.random()*6))+'h ago. '+
+    return '<b>'+s.role+'</b> ('+s.plate+', '+s.veh+') was last captured at <b>'+s.top[0][0]+'</b>'+(HOT[s.role]?', and is flagged on an active hotlist':'')+', '+(1+Math.floor(Math.random()*6))+'h ago. '+
            'Most frequent location: <b>'+s.top[0][0]+'</b>'+(a2?'. Most often seen alongside <b>'+a1+'</b> and <b>'+a2+'</b>.':'. Most often seen alongside <b>'+a1+'</b>.');
   }
   function showResult(s){
