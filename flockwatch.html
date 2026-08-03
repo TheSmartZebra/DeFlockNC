@@ -176,7 +176,7 @@
     <div class="ow-ask">
       <h2>● ASK FLOCKWATCH · NATURAL-LANGUAGE QUERY</h2>
       <div class="row">
-        <input id="ow-q" type="text" placeholder="Where was the Police Chief last night? Who travels with the Mayor?" aria-label="Ask Flockwatch">
+        <input id="ow-q" type="text" placeholder="Try: the Governor, the Senate Leader, SBI on I-40, a nurse..." aria-label="Ask FLOCKWATCH">
         <button class="go" id="ow-go">Query</button>
       </div>
       <div class="ow-chips" id="ow-chips"></div>
@@ -186,8 +186,8 @@
     <div class="ow-tiles">
       <div class="ow-tile"><div class="k">Cameras online</div><div class="v" style="color:var(--ok)">3,000+</div><div class="s">NC ALPRs on the DeFlock map</div></div>
       <div class="ow-tile"><div class="k">Reads today</div><div class="v" id="ow-today">0</div><div class="s">across the network</div></div>
-      <div class="ow-tile"><div class="k">Tracked subjects</div><div class="v" id="ow-subjects">12</div><div class="s" id="ow-subjects-s">officials · staff · agencies</div></div>
-      <div class="ow-tile hit"><div class="k">Hotlist hits (24h)</div><div class="v">2,364</div><div class="s">subjects seen</div></div>
+      <div class="ow-tile"><div class="k">Tracked subjects</div><div class="v" id="ow-subjects">8</div><div class="s" id="ow-subjects-s">officials · staff · agencies</div></div>
+      <div class="ow-tile"><div class="k">Movements logged</div><div class="v">12,480</div><div class="s">on tracked subjects &middot; 24h</div></div>
       <div class="ow-tile"><div class="k">Retention</div><div class="v">90<span style="font-size:15px"> days</span></div><div class="s">NC legal cap · rolling</div></div>
     </div>
 
@@ -246,7 +246,7 @@
   <!-- ===== POINT THE LENS BACK ===== -->
   <div class="ow-lens" id="ow-lens">
     <h3>POINT THE LENS BACK</h3>
-    <p id="ow-lens-p">The officials above approved this system for everyone else. In <strong>Resident Mode</strong>, the subject becomes you — same cameras, same hotlists, the same 90-day retention, the same searches that need no warrant. The only thing that changes is the name on the plate, and a profile like this is already waiting to be pulled for anyone who drives in North Carolina.</p>
+    <p id="ow-lens-p">The officials above approved this system for everyone else. In <strong>Resident Mode</strong>, the subject becomes you — same cameras, the same 90-day retention, the same searches that need no warrant. The only thing that changes is the name on the plate, and a profile like this is already waiting to be pulled for anyone who drives in North Carolina.</p>
   </div>
 
   <div class="ow-cta">
@@ -290,14 +290,14 @@
     return {role:role,cls:cls,tag:tag,plate:plate,veh:veh,cam:cam,spd:spd,loc:loc,reads:reads,anchor:anchor,pred:pred,conf:conf,top:top,assoc:assoc};
   }
   var OFFICIALS=[
-    S("Mayor","off",["OFFICIAL","o"],"OVR-M001","Black GMC Yukon","CAM-01",20,"Town Hall",858,"Town Hall","Town Hall",96,[["Town Hall",131],["County Courthouse",86],["Park & Ride, US-64",64],["Rail station lot",63]],[["Police Chief",58],["Council Member · Seat C",57]]),
-    S("Police Chief","off",["AGENCY","a"],"OVR-PD01","Black Ford Explorer","CAM-12",34,"Municipal Center",1204,"Police HQ","Police HQ",97,[["Police HQ",180],["City Hall",120],["Downtown corridor",95],["I-40 on-ramp",70]],[["Patrol Unit 7",71],["Sheriff's Office",44]]),
-    S("State Senator","off",["OFFICIAL","o"],"OVR-GA14","Silver Sedan","CAM-08",41,"Legislative Building",612,"Legislative Building","District office",92,[["Legislative Building",140],["District office",96],["I-40 corridor",88],["State party HQ",41]],[["Committee Chair",33],["Lobby firm vehicle",22]]),
-    S("County Commissioner","off",["OFFICIAL","o"],"OVR-CC05","Gray Pickup","CAM-09",27,"County Courthouse",488,"County Courthouse","County Courthouse",90,[["County Courthouse",122],["Fairgrounds",70],["Rural route 3",55]],[["Sheriff's Office",38]]),
-    S("Public Safety Chair","off",["OFFICIAL","o"],"OVR-CC03","White F-150","CAM-07",29,"City Hall",531,"City Hall","City Hall",94,[["City Hall",118],["Police HQ",64],["Community center",52]],[["Police Chief",47],["Fire district vehicle",20]]),
-    S("SBI Investigator","off",["AGENCY","a"],"OVR-SBI11","Charcoal Sedan","CAM-02",58,"US-70 corridor",1990,"SBI field office","US-70 corridor",95,[["US-70 corridor",210],["SBI field office",160],["Courthouse",90]],[["State Highway Patrol",88]]),
-    S("State Highway Patrol","off",["AGENCY","a"],"OVR-HP41","Dodge Charger","CAM-16",71,"I-40, mile 273",3120,"Patrol district","I-40, mile 273",98,[["I-40, mile 273",420],["Weigh station",150],["Rest area 12",96]],[["SBI Investigator",88],["County Sheriff",60]]),
-    S("Sheriff's Deputy","off",["AGENCY","a"],"OVR-SO23","Ford Interceptor","CAM-13",44,"Patrol corridor",2210,"Sheriff's Office","Patrol corridor",93,[["Sheriff's Office",240],["County Courthouse",120],["Rural route 3",100]],[["Patrol Unit 7",71]])
+    S("Governor's Office","off",["OFFICIAL","o"],"OVR-GOV1","Black Suburban","CAM-01",30,"State Capitol, Raleigh",980,"State Capitol","State Capitol",97,[["State Capitol",160],["Executive Mansion district",120],["I-40 / RDU corridor",90],["Emergency Ops Center",44]],[["Security detail vehicle",90],["Chief of Staff",61]]),
+    S("Senate Leader","off",["OFFICIAL","o"],"OVR-SEN1","Charcoal Sedan","CAM-08",34,"Legislative Building, Raleigh",1240,"Legislative Building","Legislative Building",96,[["Legislative Building",190],["Senate offices",120],["I-40 corridor",95],["State party HQ",50]],[["Committee Chair",58],["Lobby-firm vehicle",41]]),
+    S("House Speaker","off",["OFFICIAL","o"],"OVR-HSE1","Gray SUV","CAM-12",29,"Legislative Building, Raleigh",1110,"Legislative Building","Legislative Building",95,[["Legislative Building",176],["House offices",130],["I-85 corridor",70],["District office",52]],[["Majority Leader",55],["Lobby-firm vehicle",38]]),
+    S("State Senator","off",["OFFICIAL","o"],"OVR-GA14","Silver Sedan","CAM-05",41,"Legislative Building, Raleigh",612,"Legislative Building","District office",92,[["Legislative Building",140],["District office",96],["I-40 corridor",88],["State party HQ",41]],[["Committee Chair",33],["Lobby-firm vehicle",22]]),
+    S("SBI","off",["AGENCY","a"],"OVR-SBI11","Charcoal Sedan","CAM-02",58,"SBI Headquarters, Raleigh",1990,"SBI Headquarters","US-70 corridor",95,[["SBI Headquarters",210],["US-70 corridor",160],["State courthouse",90]],[["State Highway Patrol",88],["NCDOT",40]]),
+    S("State Highway Patrol","off",["AGENCY","a"],"OVR-HP41","Dodge Charger","CAM-16",71,"I-40, mile 273",3120,"Statewide patrol","I-40, mile 273",98,[["I-40, mile 273",420],["I-95 junction",150],["Weigh station",96]],[["SBI",88],["County Sheriff",60]]),
+    S("NCDOT","off",["AGENCY","a"],"OVR-DOT7","White Pickup","CAM-09",47,"I-440 Beltline, Raleigh",1450,"NCDOT Headquarters","I-440 Beltline",93,[["NCDOT Headquarters",180],["I-440 Beltline",120],["State maintenance yard",84]],[["Contractor vehicle",52],["State Highway Patrol",44]]),
+    S("Attorney General's Office","off",["AGENCY","a"],"OVR-AG01","Dark Sedan","CAM-07",26,"Dept. of Justice, Raleigh",640,"Department of Justice","Department of Justice",94,[["Department of Justice",150],["State courthouse",70],["Legislative Building",52]],[["SBI",47]])
   ];
   var RESIDENTS=[
     S("A Resident","res",["RESIDENT","r"],"OVR-8842","Silver Minivan","CAM-05",12,"Elementary-school pickup",742,"Home district","School pickup line",95,[["Elementary school",120],["Grocery on Market St",88],["Place of worship",60],["Pediatric clinic",22]],[["Second household vehicle",64]]),
@@ -312,9 +312,9 @@
   function byRole(r){ return list().find(function(s){return s.role===r;}); }
 
   // counters
-  var start=Date.now(),perSec=41,baseToday=1180000,fmt=new Intl.NumberFormat("en-US");
-  var today=document.getElementById("ow-today");
-  (function tick(){var n=Math.floor((Date.now()-start)/1000*perSec);today.textContent=fmt.format(baseToday+n);requestAnimationFrame(tick);})();
+  var fmt=new Intl.NumberFormat("en-US");
+  var today=document.getElementById("ow-today"),READ_RATE=520;
+  (function tick(){var now=new Date(),mid=new Date(now.getFullYear(),now.getMonth(),now.getDate());today.textContent=fmt.format(Math.floor((now-mid)/1000*READ_RATE));requestAnimationFrame(tick);})();
 
   // map
   var map=document.getElementById("ow-map"),route=document.getElementById("ow-route");
@@ -344,9 +344,9 @@
   function pad(n){return String(n).padStart(2,"0");}
   function stamp(b){var d=new Date(Date.now()-b*1000);return pad(d.getHours())+":"+pad(d.getMinutes())+":"+pad(d.getSeconds());}
   function row(s,b){
-    var hot=Math.random()<0.5,el=document.createElement("div");el.className="ow-read";
+    var el=document.createElement("div");el.className="ow-read";
     el.innerHTML='<div class="ow-plate"><small>NORTH CAROLINA</small><b>'+s.plate+'</b></div>'+
-      '<div class="ow-rbody"><div class="ow-rrole '+s.cls+'">'+s.role+'<span class="ow-bt '+s.tag[1]+'">'+s.tag[0]+'</span>'+(hot?'<span class="ow-bt h">HOTLIST HIT</span>':'')+'</div>'+
+      '<div class="ow-rbody"><div class="ow-rrole '+s.cls+'">'+s.role+'<span class="ow-bt '+s.tag[1]+'">'+s.tag[0]+'</span>'+'</div>'+
       '<div class="ow-rmeta">'+s.veh+' · <b>Loc:</b> '+s.loc+' · <b>Cam:</b> '+s.cam+' · <b>Spd:</b> '+s.spd+' mph</div></div>'+
       '<div class="ow-time">'+stamp(b)+'</div>';
     el.onclick=function(){openModal(s);};return el;
@@ -426,10 +426,10 @@
   var chips=document.getElementById("ow-chips"),result=document.getElementById("ow-result");
   var QUERIES={
     officials:[
-      ["Where was the Police Chief last night?","Police Chief"],
-      ["Who travels with the Mayor?","Mayor"],
-      ["Show the State Senator's routine","State Senator"],
-      ["How often is the Public Safety Chair seen?","Public Safety Chair"]
+      ["Where was the Governor last night?","Governor's Office"],
+      ["Who travels with the Senate Leader?","Senate Leader"],
+      ["Show the State Highway Patrol's routine","State Highway Patrol"],
+      ["How often is SBI seen on I-40?","SBI"]
     ],
     resident:[
       ["Where does this resident go on Sundays?","Churchgoer"],
@@ -440,7 +440,7 @@
   };
   function answer(s){
     var a1=s.assoc[0]?s.assoc[0][0]:"a companion vehicle", a2=s.assoc[1]?s.assoc[1][0]:null;
-    return '<b>'+s.role+'</b> ('+s.plate+', '+s.veh+') was last captured at <b>'+s.top[0][0]+'</b>, near a hotlist camera, '+(1+Math.floor(Math.random()*6))+'h ago. '+
+    return '<b>'+s.role+'</b> ('+s.plate+', '+s.veh+') was last captured at <b>'+s.top[0][0]+'</b>, '+(1+Math.floor(Math.random()*6))+'h ago. '+
            'Most frequent location: <b>'+s.top[0][0]+'</b>'+(a2?'. Most often seen alongside <b>'+a1+'</b> and <b>'+a2+'</b>.':'. Most often seen alongside <b>'+a1+'</b>.');
   }
   function showResult(s){
@@ -455,12 +455,9 @@
   }
   function buildChips(){chips.innerHTML="";QUERIES[mode].forEach(function(q){var b=document.createElement("button");b.textContent=q[0];
     b.onclick=function(){document.getElementById("ow-q").value=q[0];var s=byRole(q[1]);if(s)showResult(s);};chips.appendChild(b);});}
-  document.getElementById("ow-go").onclick=function(){
-    var v=document.getElementById("ow-q").value.toLowerCase(),qs=QUERIES[mode];
-    var m=qs.find(function(q){return v&&q[0].toLowerCase().indexOf(v.slice(0,10))!==-1;});
-    var s=m?byRole(m[1]):list().find(function(x){return v&&x.role.toLowerCase().indexOf(v.slice(0,4))!==-1;})||list()[0];
-    showResult(s);
-  };
+  var SYN={"Governor's Office":["governor","gov "],"Senate Leader":["senate leader","pro tem","president pro","senate president","leadership"],"House Speaker":["house speaker","speaker","house leader"],"State Senator":["senator","legislator","general assembly","representative"],"SBI":["sbi","state bureau","investigation","bureau"],"State Highway Patrol":["highway patrol","trooper","shp","interstate","i-40","i-85","i-95"],"NCDOT":["ncdot","dot","transportation","road"],"Attorney General's Office":["attorney general","attorney","department of justice","doj","prosecutor"],"A Resident":["resident","parent","school pickup","commuter","driver"],"Night-shift Nurse":["nurse","hospital","night shift"],"Churchgoer":["church","worship","sunday","congregation"],"Teenager":["teen","student","high school","cinema"],"Protester":["protest","rally","demonstration","capitol"],"Clinic Visitor":["clinic","doctor","medical","health","appointment"]};
+  function findSubject(v){v=" "+v.toLowerCase()+" ";var L=list(),best=null,bs=0;L.forEach(function(s){var sc=0,role=s.role.toLowerCase();if(v.indexOf(role)!==-1)sc+=6;role.split(/[^a-z]+/).forEach(function(w){if(w.length>2&&v.indexOf(w)!==-1)sc+=2;});(SYN[s.role]||[]).forEach(function(w){if(v.indexOf(w)!==-1)sc+=4;});if(sc>bs){bs=sc;best=s;}});return bs>0?best:null;}
+  document.getElementById("ow-go").onclick=function(){var v=document.getElementById("ow-q").value.trim();if(!v){showResult(list()[0]);return;}var s=findSubject(v);if(!s){var m=QUERIES[mode].find(function(q){return q[0].toLowerCase().indexOf(v.toLowerCase().slice(0,8))!==-1;});s=m?byRole(m[1]):null;}showResult(s||list()[0]);};
   document.getElementById("ow-q").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();document.getElementById("ow-go").click();}});
 
   // mode toggle
@@ -469,7 +466,7 @@
   document.getElementById("ow-mode").addEventListener("click",function(e){
     var b=e.target.closest("button");if(!b)return;mode=b.getAttribute("data-mode");
     [].forEach.call(this.children,function(x){x.classList.toggle("on",x===b);});
-    if(mode==="officials"){subjects.textContent="12";subjectsS.textContent="officials · staff · agencies";feedTitle.textContent="Live Read Feed";}
+    if(mode==="officials"){subjects.textContent="8";subjectsS.textContent="officials · staff · agencies";feedTitle.textContent="Live Read Feed";}
     else{subjects.textContent="3.6M";subjectsS.textContent="every NC driver — including you";feedTitle.textContent="Live Read Feed · Residents";}
     result.style.display="none";seedFeed();buildChips();renderRoster();renderInsights();
   });
