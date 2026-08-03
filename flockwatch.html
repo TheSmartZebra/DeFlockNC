@@ -79,6 +79,7 @@
   .ow-feed{max-height:430px;overflow-y:auto;}
   .ow-read{display:flex;gap:12px;padding:12px 14px;border-bottom:1px solid #151b21;align-items:flex-start;cursor:pointer;}
   .ow-read:hover{background:#0e131a;}
+  .ow-read.hotrow{background:rgba(255,90,90,.08);box-shadow:inset 3px 0 0 var(--hit);}
   .ow-plate{flex-shrink:0;width:66px;border:1px solid #2a323b;border-radius:5px;background:#0a0e12;text-align:center;padding:5px 2px;}
   .ow-plate small{display:block;font-size:6.5px;letter-spacing:.05em;color:#5f6b62;}
   .ow-plate b{font-family:ui-monospace,monospace;font-size:12px;color:#cfd6dd;}
@@ -91,6 +92,7 @@
   .ow-roster{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;}
   .ow-rc{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:16px;cursor:pointer;}
   .ow-rc:hover{border-color:var(--ok);}
+  .ow-rc.hotrow{border-color:var(--hit);background:rgba(255,90,90,.06);}
   .ow-rc .av{width:40px;height:40px;border-radius:9px;background:#241a12;border:1px solid #6b4331;color:var(--ok);font-weight:900;display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
   .ow-ins{display:grid;grid-template-columns:1.2fr .8fr;gap:16px;}
   .ow-hm{display:grid;grid-template-columns:auto 1fr;gap:6px 8px;}
@@ -185,8 +187,8 @@
 
     <div class="ow-tiles">
       <div class="ow-tile"><div class="k">Cameras online</div><div class="v" style="color:var(--ok)">3,000+</div><div class="s">NC ALPRs on the DeFlock map</div></div>
-      <div class="ow-tile"><div class="k">Reads today</div><div class="v" id="ow-today">0</div><div class="s">across the network</div></div>
-      <div class="ow-tile"><div class="k">Tracked subjects</div><div class="v" id="ow-subjects">8</div><div class="s" id="ow-subjects-s">officials · staff · agencies</div></div>
+      <div class="ow-tile"><div class="k">Reads today</div><div class="v" id="ow-today">0</div><div class="s">across the U.S. &middot; today</div></div>
+      <div class="ow-tile"><div class="k">Tracked subjects</div><div class="v" id="ow-subjects">9</div><div class="s" id="ow-subjects-s">officials · staff · agencies</div></div>
       <div class="ow-tile hit"><div class="k">Hotlist hits (24h)</div><div class="v">2,364</div><div class="s">subjects flagged</div></div>
       <div class="ow-tile"><div class="k">Retention</div><div class="v">90<span style="font-size:15px"> days</span></div><div class="s">NC legal cap · rolling</div></div>
     </div>
@@ -291,6 +293,7 @@
   }
   var OFFICIALS=[
     S("Governor's Office","off",["OFFICIAL","o"],"OVR-GOV1","Black Suburban","CAM-01",30,"State Capitol, Raleigh",980,"State Capitol","State Capitol",97,[["State Capitol",160],["Executive Mansion district",120],["I-40 / RDU corridor",90],["Emergency Ops Center",44]],[["Security detail vehicle",90],["Chief of Staff",61]]),
+    S("Lt. Governor's Office","off",["OFFICIAL","o"],"OVR-LTG1","Dark Sedan","CAM-03",28,"Legislative Building, Raleigh",760,"Lt. Governor's office","Legislative Building",93,[["Legislative Building",130],["Executive offices",90],["I-40 corridor",70],["State Board of Education",30]],[["Security detail vehicle",40],["Committee Chair",28]]),
     S("Senate Leader","off",["OFFICIAL","o"],"OVR-SEN1","Charcoal Sedan","CAM-08",34,"Legislative Building, Raleigh",1240,"Legislative Building","Legislative Building",96,[["Legislative Building",190],["Senate offices",120],["I-40 corridor",95],["State party HQ",50]],[["Committee Chair",58],["Lobby-firm vehicle",41]]),
     S("House Speaker","off",["OFFICIAL","o"],"OVR-HSE1","Gray SUV","CAM-12",29,"Legislative Building, Raleigh",1110,"Legislative Building","Legislative Building",95,[["Legislative Building",176],["House offices",130],["I-85 corridor",70],["District office",52]],[["Majority Leader",55],["Lobby-firm vehicle",38]]),
     S("State Senator","off",["OFFICIAL","o"],"OVR-GA14","Silver Sedan","CAM-05",41,"Legislative Building, Raleigh",612,"Legislative Building","District office",92,[["Legislative Building",140],["District office",96],["I-40 corridor",88],["State party HQ",41]],[["Committee Chair",33],["Lobby-firm vehicle",22]]),
@@ -308,13 +311,13 @@
     S("Clinic Visitor","res",["RESIDENT","r"],"OVR-9012","Gray SUV","CAM-06",15,"Health-clinic lot",260,"Home district","Home district",90,[["Health clinic",22],["Pharmacy",30],["Home district",150]],[["Household vehicle",40]])
   ];
   var mode="officials";
-  var HOT={"Governor's Office":1,"Senate Leader":1,"Protester":1};
+  var HOT={"Governor's Office":1,"Lt. Governor's Office":1,"Senate Leader":1,"House Speaker":1,"Attorney General's Office":1,"Protester":1,"A Resident":1,"Clinic Visitor":1};
   function list(){ return mode==="officials"?OFFICIALS:RESIDENTS; }
   function byRole(r){ return list().find(function(s){return s.role===r;}); }
 
   // counters
   var fmt=new Intl.NumberFormat("en-US");
-  var today=document.getElementById("ow-today"),READ_RATE=520;
+  var today=document.getElementById("ow-today"),READ_RATE=20000000000/(30*24*3600);
   (function tick(){var now=new Date(),mid=new Date(now.getFullYear(),now.getMonth(),now.getDate());today.textContent=fmt.format(Math.floor((now-mid)/1000*READ_RATE));requestAnimationFrame(tick);})();
 
   // map
@@ -345,7 +348,7 @@
   function pad(n){return String(n).padStart(2,"0");}
   function stamp(b){var d=new Date(Date.now()-b*1000);return pad(d.getHours())+":"+pad(d.getMinutes())+":"+pad(d.getSeconds());}
   function row(s,b){
-    var hot=HOT[s.role],el=document.createElement("div");el.className="ow-read";
+    var hot=HOT[s.role],el=document.createElement("div");el.className="ow-read"+(hot?" hotrow":"");
     el.innerHTML='<div class="ow-plate"><small>NORTH CAROLINA</small><b>'+s.plate+'</b></div>'+
       '<div class="ow-rbody"><div class="ow-rrole '+s.cls+'">'+s.role+'<span class="ow-bt '+s.tag[1]+'">'+s.tag[0]+'</span>'+(hot?'<span class="ow-bt h">HOTLIST HIT</span>':'')+'</div>'+
       '<div class="ow-rmeta">'+s.veh+' · <b>Loc:</b> '+s.loc+' · <b>Cam:</b> '+s.cam+' · <b>Spd:</b> '+s.spd+' mph</div></div>'+
@@ -358,7 +361,7 @@
 
   // roster
   var roster=document.getElementById("ow-roster");
-  function renderRoster(){roster.innerHTML="";list().forEach(function(s){var c=document.createElement("div");c.className="ow-rc";
+  function renderRoster(){roster.innerHTML="";list().forEach(function(s){var c=document.createElement("div");c.className="ow-rc"+(HOT[s.role]?" hotrow":"");
     c.innerHTML='<div class="av">'+s.role[0]+'</div><div style="font-weight:800;color:var(--ink)">'+s.role+'</div>'+
       '<div style="font-family:ui-monospace,monospace;font-size:12px;color:#8a94a0;margin-top:4px;">'+s.plate+' · '+s.veh+'</div>'+
       '<div style="font-size:12px;color:#6f7a85;margin-top:8px;">'+fmt.format(s.reads)+' reads / 30 days · <span style="color:var(--ok)">view profile →</span></div>';
@@ -467,7 +470,7 @@
   document.getElementById("ow-mode").addEventListener("click",function(e){
     var b=e.target.closest("button");if(!b)return;mode=b.getAttribute("data-mode");
     [].forEach.call(this.children,function(x){x.classList.toggle("on",x===b);});
-    if(mode==="officials"){subjects.textContent="8";subjectsS.textContent="officials · staff · agencies";feedTitle.textContent="Live Read Feed";}
+    if(mode==="officials"){subjects.textContent="9";subjectsS.textContent="officials · staff · agencies";feedTitle.textContent="Live Read Feed";}
     else{subjects.textContent="3.6M";subjectsS.textContent="every NC driver — including you";feedTitle.textContent="Live Read Feed · Residents";}
     result.style.display="none";seedFeed();buildChips();renderRoster();renderInsights();
   });
