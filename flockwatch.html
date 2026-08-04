@@ -442,15 +442,22 @@
       ["Who visited the clinic this week?","Clinic Visitor"]
     ]
   };
-  function answer(s){
-    var a1=s.assoc[0]?s.assoc[0][0]:"a companion vehicle", a2=s.assoc[1]?s.assoc[1][0]:null;
-    return '<b>'+s.role+'</b> ('+s.plate+', '+s.veh+') was last captured at <b>'+s.top[0][0]+'</b>'+(HOT[s.role]?', and is flagged on an active hotlist':'')+', '+(1+Math.floor(Math.random()*6))+'h ago. '+
-           'Most frequent location: <b>'+s.top[0][0]+'</b>'+(a2?'. Most often seen alongside <b>'+a1+'</b> and <b>'+a2+'</b>.':'. Most often seen alongside <b>'+a1+'</b>.');
+  function answer(s,q){
+    q=(q||"").toLowerCase();
+    var a1=s.assoc[0]?s.assoc[0][0]:"a companion vehicle",a2=s.assoc[1]?s.assoc[1][0]:null;
+    var flag=HOT[s.role]?" It is flagged on an active hotlist.":"";
+    if(/travel|with |compan|together|alongside|who goes|who is with/.test(q))
+      return '<b>'+s.role+'</b> ('+s.plate+') is most often co-located with <b>'+a1+'</b>'+(a2?' and <b>'+a2+'</b>':'')+' — dozens of shared reads near <b>'+s.top[0][0]+'</b>.'+flag;
+    if(/routine|pattern|schedule|habit|when does|what time/.test(q))
+      return '<b>'+s.role+'</b> ('+s.plate+') anchors at <b>'+s.anchor+'</b>; predicted next stop <b>'+s.pred+'</b> ('+s.conf+'% confidence), reconstructed from '+fmt.format(s.reads)+' reads in 30 days.'+flag;
+    if(/how often|how many|times|count|frequen/.test(q))
+      return '<b>'+s.role+'</b> ('+s.plate+') was read <b>'+fmt.format(s.reads)+' times in 30 days</b> across '+s.top.length+' locations — most at <b>'+s.top[0][0]+'</b>.'+flag;
+    return '<b>'+s.role+'</b> ('+s.plate+', '+s.veh+') was last captured at <b>'+s.top[0][0]+'</b>, '+(1+Math.floor(Math.random()*6))+'h ago. Most frequent location: <b>'+s.top[0][0]+'</b>'+(a2?'; most often seen with <b>'+a1+'</b> and <b>'+a2+'</b>':'')+'.'+flag;
   }
-  function showResult(s){
+  function showResult(s,q){
     result.style.display="block";
     result.innerHTML='<div class="qh">Query · '+s.role+'</div>'+
-      '<div class="qa">'+answer(s)+'</div>'+
+      '<div class="qa">'+answer(s,q)+'</div>'+
       '<div class="qm"><span>Last location <b>'+s.top[0][0]+'</b></span><span>Last camera <b>'+s.cam+'</b></span><span>Reads (30d) <b>'+fmt.format(s.reads)+'</b></span><span>Confidence <b>'+s.conf+'%</b></span></div>'+
       '<div class="qc"><button data-a="dossier">Build dossier</button><button data-a="pol">Pattern of life</button><button data-a="replay">Replay on map</button></div>';
     result.querySelector('[data-a="dossier"]').onclick=function(){openModal(s);};
@@ -458,10 +465,10 @@
     result.querySelector('[data-a="replay"]').onclick=function(){goTab("command");replay(s);};
   }
   function buildChips(){chips.innerHTML="";QUERIES[mode].forEach(function(q){var b=document.createElement("button");b.textContent=q[0];
-    b.onclick=function(){document.getElementById("ow-q").value=q[0];var s=byRole(q[1]);if(s)showResult(s);};chips.appendChild(b);});}
-  var SYN={"Governor's Office":["governor","gov "],"Senate Leader":["senate leader","pro tem","president pro","senate president","leadership"],"House Speaker":["house speaker","speaker","house leader"],"State Senator":["senator","legislator","general assembly","representative"],"SBI":["sbi","state bureau","investigation","bureau"],"State Highway Patrol":["highway patrol","trooper","shp","interstate","i-40","i-85","i-95"],"NCDOT":["ncdot","dot","transportation","road"],"Attorney General's Office":["attorney general","attorney","department of justice","doj","prosecutor"],"A Resident":["resident","parent","school pickup","commuter","driver"],"Night-shift Nurse":["nurse","hospital","night shift"],"Churchgoer":["church","worship","sunday","congregation"],"Teenager":["teen","student","high school","cinema"],"Protester":["protest","rally","demonstration","capitol"],"Clinic Visitor":["clinic","doctor","medical","health","appointment"]};
+    b.onclick=function(){document.getElementById("ow-q").value=q[0];var s=byRole(q[1]);if(s)showResult(s,q[0]);};chips.appendChild(b);});}
+  var SYN={"Governor's Office":["governor","gov "],"Lt. Governor's Office":["lieutenant governor","lt governor","lt. governor","lieutenant"],"Senate Leader":["senate leader","pro tem","president pro","senate president","leadership"],"House Speaker":["house speaker","speaker","house leader"],"State Senator":["senator","legislator","general assembly","representative"],"SBI":["sbi","state bureau","investigation","bureau"],"State Highway Patrol":["highway patrol","trooper","shp","interstate","i-40","i-85","i-95"],"NCDOT":["ncdot","dot","transportation","road"],"Attorney General's Office":["attorney general","attorney","department of justice","doj","prosecutor"],"A Resident":["resident","parent","school pickup","commuter","driver"],"Night-shift Nurse":["nurse","hospital","night shift"],"Churchgoer":["church","worship","sunday","congregation"],"Teenager":["teen","student","high school","cinema"],"Protester":["protest","rally","demonstration","capitol"],"Clinic Visitor":["clinic","doctor","medical","health","appointment"]};
   function findSubject(v){v=" "+v.toLowerCase()+" ";var L=list(),best=null,bs=0;L.forEach(function(s){var sc=0,role=s.role.toLowerCase();if(v.indexOf(role)!==-1)sc+=6;role.split(/[^a-z]+/).forEach(function(w){if(w.length>2&&v.indexOf(w)!==-1)sc+=2;});(SYN[s.role]||[]).forEach(function(w){if(v.indexOf(w)!==-1)sc+=4;});if(sc>bs){bs=sc;best=s;}});return bs>0?best:null;}
-  document.getElementById("ow-go").onclick=function(){var v=document.getElementById("ow-q").value.trim();if(!v){showResult(list()[0]);return;}var s=findSubject(v);if(!s){var m=QUERIES[mode].find(function(q){return q[0].toLowerCase().indexOf(v.toLowerCase().slice(0,8))!==-1;});s=m?byRole(m[1]):null;}showResult(s||list()[0]);};
+  document.getElementById("ow-go").onclick=function(){var v=document.getElementById("ow-q").value.trim();if(!v){showResult(list()[0],"");return;}var s=findSubject(v);if(!s){var m=QUERIES[mode].find(function(q){return q[0].toLowerCase().indexOf(v.toLowerCase().slice(0,8))!==-1;});s=m?byRole(m[1]):null;}showResult(s||list()[0],v);};
   document.getElementById("ow-q").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();document.getElementById("ow-go").click();}});
 
   // mode toggle

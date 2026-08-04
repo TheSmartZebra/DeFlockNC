@@ -6,12 +6,12 @@
    running number. If no such target exists on a page, it injects a slim
    persistent ticker bar pinned to the bottom. */
 (function () {
-  var KEY = 'dfnc_arrival', t;
+    var KEY = 'dfnc_arrival', t, NOW = Date.now();
+  var mid = new Date(); mid.setHours(0, 0, 0, 0); var MIDNIGHT = mid.getTime();
   try {
-    t = sessionStorage.getItem(KEY);
-    if (!t) { t = String(Date.now()); sessionStorage.setItem(KEY, t); }
-  } catch (e) { t = String(Date.now()); }
-  t = parseInt(t, 10) || Date.now();
+    t = parseInt(sessionStorage.getItem(KEY), 10);
+    if (!t || t < MIDNIGHT) { t = NOW; sessionStorage.setItem(KEY, String(t)); } // fresh start each day
+  } catch (e) { t = NOW; }
 
   var PER_SEC = 500000000 / (30 * 24 * 3600); // ~500M scans/month across NC (est. from 3,000+ documented NC ALPR cameras)
   var fmt = new Intl.NumberFormat('en-US');
@@ -39,8 +39,10 @@
     targets.push(document.getElementById('dfnc-ticker-n'));
   }
 
-  (function tick() {
-    var s = fmt.format(Math.floor((Date.now() - t) / 1000 * PER_SEC));
+    (function tick() {
+    var d = new Date(); d.setHours(0, 0, 0, 0);           // today's midnight
+    var start = Math.max(t, d.getTime());                 // never count before today
+    var s = fmt.format(Math.floor((Date.now() - start) / 1000 * PER_SEC));
     for (var j = 0; j < targets.length; j++) targets[j].textContent = s;
     requestAnimationFrame(tick);
   })();
