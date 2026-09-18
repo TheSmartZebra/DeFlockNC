@@ -1,6 +1,6 @@
 {
   "_comment": "Single source of truth for NC Flock/ALPR deployments. Both the Cameras page table and the Near You tool render from this file. Edit here and both update. status = active | fight (being decided) | dropped. county = NC county name without the word 'County'.",
-  "updated": "2026-07-21",
+  "updated": "2026-09-17",
   "communities": [
     {
       "place": "Raleigh",
@@ -54,16 +54,16 @@
     {
       "place": "Madison County",
       "county": "Madison",
-      "cameras": "Sheriff contract (Feb 2026)",
+      "cameras": "17 -> 12 (~$30K/yr)",
       "status": "fight",
-      "note": "3,302 searches within months of signing; residents blocked from speaking at a June 2026 meeting."
+      "note": "~50 residents spoke at a June 2026 meeting; commissioners amended the contract to drop 5 of 17 cameras. 'Madison for Privacy' is still organizing to end it."
     },
     {
       "place": "New Hanover County (Wilmington)",
       "county": "New Hanover",
-      "cameras": "~62",
-      "status": "fight",
-      "note": "Sheriff's contract (#25-0364) grew ~5x since a 2021 pilot with no public vote; 2.98M searches logged; DeFlock ILM organizing residents against renewal.",
+      "cameras": "36 -> removed",
+      "status": "dropped",
+      "note": "Commissioners terminated the ~$219K Sheriff's contract on Sept 8, 2026, deactivating 36 county-owned cameras. DeFlock ILM organized residents against it.",
       "link": "https://deflockilm.org/",
       "linkText": "DeFlock ILM"
     },
@@ -184,16 +184,44 @@
     {
       "place": "Asheville",
       "county": "Buncombe",
-      "cameras": "~11 city (+ private feeds)",
-      "status": "fight",
-      "note": "Advanced amid public comment."
+      "cameras": "11 -> removed",
+      "status": "dropped",
+      "note": "City Council voted to cancel; 11 Flock cameras removed Aug 25, 2026 after Mayor Esther Manheimer urged ending the contract. (162 Axon in-car readers remain.)"
+    },
+    {
+      "place": "Davidson County",
+      "county": "Davidson",
+      "cameras": "25 -> removed",
+      "status": "dropped",
+      "note": "Sheriff's Office terminated its 25-camera program (Aug 24, 2026)."
+    },
+    {
+      "place": "Dare County",
+      "county": "Dare",
+      "cameras": "14 -> removed",
+      "status": "dropped",
+      "note": "Sheriff's Office removed 14 cameras at seven Outer Banks locations (Sept 1, 2026)."
+    },
+    {
+      "place": "Kitty Hawk",
+      "county": "Dare",
+      "cameras": "Removed",
+      "status": "dropped",
+      "note": "Town's last Flock camera was shut off in August 2026."
+    },
+    {
+      "place": "Cherokee County",
+      "county": "Cherokee",
+      "cameras": "8 (planned)",
+      "status": "active",
+      "note": "Bucking the statewide trend -- Sheriff's Office plans 8 new Flock cameras, targeted for late 2026."
     },
     {
       "place": "Macon County",
       "county": "Macon",
-      "cameras": "12 -> being removed",
+      "cameras": "12 -> removed",
       "status": "dropped",
-      "note": "Commissioners voted 5-0 to defund (July 2026)."
+      "note": "Commissioners voted unanimously to let the contract expire (July 2026); only 6 cameras at public schools remain."
     },
     {
       "place": "Hillsborough",
